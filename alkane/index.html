@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>Alkane Engine Documentation</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- GitHub markdown CSS (REAL fix) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.5.1/github-markdown-dark.min.css">
+
+<style>
+:root{
+  --bg:#0d1117;
+  --panel:#161b22;
+  --border:#30363d;
+  --text:#c9d1d9;
+  --muted:#8b949e;
+  --accent:#7c3aed;
+
+  --note:#3b82f6;
+  --tip:#22c55e;
+  --warn:#f59e0b;
+  --caution:#ef4444;
+
+  --sidebar-width:280px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
+  font-family:Inter,system-ui;
+  background:var(--bg);
+  color:var(--text);
+  height:100vh;
+  overflow:hidden;
+}
+
+/* landing */
+
+#landing{
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:2rem;
+}
+
+#landing h1{
+  font-size:4rem;
+  font-weight:700;
+  background:linear-gradient(135deg,#e9d5ff,#7c3aed);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  margin-bottom:1rem;
+}
+
+#landing p{color:var(--muted);margin-bottom:2rem;max-width:640px;line-height:1.6}
+
+.cta-group button{
+  padding:.9rem 1.8rem;
+  border-radius:999px;
+  border:none;
+  cursor:pointer;
+  font-weight:500;
+}
+
+.cta-primary{background:var(--accent);color:#000}
+.cta-secondary{background:var(--panel);color:var(--text);margin-left:.6rem}
+
+/* app */
+
+#app{display:none;height:100vh}
+
+.app-bar{
+  height:60px;
+  display:flex;
+  align-items:center;
+  gap:1rem;
+  padding:0 1rem;
+  background:var(--panel);
+  border-bottom:1px solid var(--border);
+}
+
+.back{
+  cursor:pointer;
+  color:var(--muted);
+  font-size:.9rem;
+}
+.back:hover{color:var(--text)}
+
+.layout{display:flex;height:calc(100% - 60px)}
+
+.sidebar{
+  width:var(--sidebar-width);
+  background:var(--panel);
+  border-right:1px solid var(--border);
+  padding:1.2rem;
+  overflow-y:auto;
+}
+
+.tree ul{list-style:none;padding-left:.8rem}
+.tree button{
+  width:100%;
+  text-align:left;
+  padding:.45rem .6rem;
+  border-radius:10px;
+  border:none;
+  background:none;
+  color:var(--muted);
+  cursor:pointer;
+  transition:.15s;
+}
+.tree button:hover{background:#1f2630;color:var(--text)}
+.tree .active{background:#2a1a35;color:#c084fc}
+
+.content{
+  flex:1;
+  overflow:auto;
+  display:flex;
+  justify-content:center;
+}
+
+/* GitHub markdown container override */
+
+.markdown-body{
+  box-sizing:border-box;
+  max-width:900px;
+  width:100%;
+  padding:3rem 2.5rem 4rem;
+  background:transparent;
+
+  --color-fg-default:#c9d1d9;
+  --color-canvas-default:transparent;
+  --color-border-default:#30363d;
+  --color-accent-fg:#a78bfa;
+}
+
+/* callouts */
+
+.callout{
+  border:1px solid var(--border);
+  border-left:4px solid;
+  padding:.8rem 1rem;
+  border-radius:8px;
+  margin:1rem 0;
+  background:#161b22;
+}
+
+.callout-note{border-left-color:var(--note)}
+.callout-tip{border-left-color:var(--tip)}
+.callout-warning{border-left-color:var(--warn)}
+.callout-caution{border-left-color:var(--caution)}
+
+.callout-title{
+  font-weight:600;
+  margin-bottom:.3rem;
+  font-size:.9rem;
+}
+</style>
+</head>
+<body>
+
+<div id="landing">
+  <h1>Alkane Engine</h1>
+  <p>A real-time graphics and physics rendering engine written in C++ with OpenGL.</p>
+  <div class="cta-group">
+    <button class="cta-primary" onclick="openDocs()">View Docs</button>
+    <button class="cta-secondary" onclick="window.open('https://github.com/alkane-framework/alkane-engine','_blank')">GitHub</button>
+  </div>
+</div>
+
+<div id="app">
+  <div class="app-bar">
+    <div class="back" onclick="goHome()">← Back</div>
+    <div>Alkane Engine Documentation</div>
+  </div>
+
+  <div class="layout">
+    <div class="sidebar">
+      <div class="tree" id="tree"></div>
+    </div>
+
+    <div class="content">
+      <article class="markdown-body" id="content"></article>
+    </div>
+  </div>
+</div>
+
+<script>
+const repoOwner="alkane-framework";
+const repoName="alkane-engine";
+const branch="main";
+const docsPath="docs";
+
+const apiBase=`https://api.github.com/repos/${repoOwner}/${repoName}/contents/`;
+const rawBase=`https://raw.githubusercontent.com/${repoOwner}/${repoName}/${branch}/`;
+
+const treeEl=document.getElementById('tree');
+const contentEl=document.getElementById('content');
+const landing=document.getElementById('landing');
+const app=document.getElementById('app');
+
+function openDocs(){
+  landing.style.display='none';
+  app.style.display='block';
+  if(!treeEl.hasChildNodes())fetchDirectory(docsPath,treeEl);
+}
+
+function goHome(){
+  app.style.display='none';
+  landing.style.display='flex';
+}
+
+/* files first → folders */
+
+async function fetchDirectory(path,container){
+  const res=await fetch(`${apiBase}${path}?ref=${branch}`);
+  const data=await res.json();
+
+  const files=data.filter(i=>i.type==='file'&&i.name.endsWith('.md')).sort((a,b)=>a.name.localeCompare(b.name));
+  const dirs=data.filter(i=>i.type==='dir').sort((a,b)=>a.name.localeCompare(b.name));
+
+  const ul=document.createElement('ul');
+
+  for(const file of files){
+    const li=document.createElement('li');
+    const btn=document.createElement('button');
+    btn.textContent=file.name.replace('.md','');
+    btn.onclick=()=>loadMarkdown(file.path,btn);
+    li.appendChild(btn);
+    ul.appendChild(li);
+  }
+
+  for(const dir of dirs){
+    const li=document.createElement('li');
+    const btn=document.createElement('button');
+    btn.textContent=dir.name;
+    const sub=document.createElement('div');
+    sub.style.display='none';
+    btn.onclick=()=>sub.style.display=sub.style.display==='block'?'none':'block';
+    li.appendChild(btn);
+    li.appendChild(sub);
+    ul.appendChild(li);
+    fetchDirectory(dir.path,sub);
+  }
+
+  container.appendChild(ul);
+}
+
+/* callouts */
+
+function icon(type){
+  if(type==="NOTE") return "📝";
+  if(type==="TIP") return "💡";
+  if(type==="WARNING") return "⚠️";
+  if(type==="CAUTION") return "⛔";
+  return "";
+}
+
+function transformCallouts(html){
+  return html.replace(
+    /<blockquote>\s*\[!(NOTE|TIP|WARNING|CAUTION)\]\s*([\s\S]*?)<\/blockquote>/g,
+    (_,type,content)=>{
+      const t=type.toLowerCase();
+      return `<div class="callout callout-${t}">
+        <div class="callout-title">${icon(type)} ${type}</div>
+        <div>${content.trim()}</div>
+      </div>`;
+    }
+  );
+}
+
+/* GitHub markdown render */
+
+async function renderMarkdown(md){
+  const res=await fetch("https://api.github.com/markdown",{
+    method:"POST",
+    headers:{ "Content-Type":"application/json" },
+    body:JSON.stringify({
+      text:md,
+      mode:"gfm",
+      context:`${repoOwner}/${repoName}`
+    })
+  });
+  return await res.text();
+}
+
+async function loadMarkdown(path,btn){
+  document.querySelectorAll('.tree button').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+
+  const md=await (await fetch(`${rawBase}${path}`)).text();
+  let html=await renderMarkdown(md);
+  html=transformCallouts(html);
+
+  contentEl.innerHTML=html;
+}
+</script>
+
+</body>
+</html>
