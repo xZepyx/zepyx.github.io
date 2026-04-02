@@ -478,13 +478,12 @@ main{max-width:1100px;margin:0 auto;padding:24px 16px 80px}
 <div class="top-bar" id="top-bar" style="display:none">
   <div class="top-bar-inner">
     <div class="top-bar-left">
-      <div class="app-logo" onclick="showPage('habits')">
+      <div class="app-logo" onclick="showPage('analytics')">
         <div class="app-logo-icon"><span style="font-family:'Material Symbols Rounded';font-size:1.1rem">water_drop</span></div>
         <span class="app-name">Ripple</span>
       </div>
       <div class="nav-tabs">
-        <button class="nav-tab active" id="nav-habits" onclick="showPage('habits')"><span class="icon icon-sm">today</span> Habits</button>
-        <button class="nav-tab" id="nav-analytics" onclick="showPage('analytics')"><span class="icon icon-sm">insights</span> Analytics</button>
+        <button class="nav-tab active" id="nav-analytics" onclick="showPage('analytics')"><span class="icon icon-sm">insights</span> Analytics</button>
       </div>
     </div>
     <div class="top-bar-right">
@@ -501,7 +500,7 @@ main{max-width:1100px;margin:0 auto;padding:24px 16px 80px}
 <main id="main-content" style="display:none">
 
   <!-- ══ HABITS PAGE ══ -->
-  <div class="page active" id="page-habits">
+  <div class="page" id="page-habits" style="display:none"> // disable it
     <div class="week-nav">
       <button class="icon-btn md-ripple" onclick="changeWeek(-1)"><span class="icon">chevron_left</span></button>
       <div class="week-label-text" id="week-label"></div>
@@ -740,7 +739,7 @@ document.getElementById('confirm-ok-btn').onclick = () => { if (pendingConfirmFn
 
 // ── WEEK UTILS ──
 function getWeekDates(off=0) {
-  const now = new Date(); const day = now.getDay();
+  const now = ; const day = now.getDay();
   const mon = new Date(now); mon.setDate(now.getDate() - (day===0?6:day-1) + off*7); mon.setHours(0,0,0,0);
   return Array.from({length:7},(_,i) => { const d=new Date(mon); d.setDate(mon.getDate()+i); return d; });
 }
