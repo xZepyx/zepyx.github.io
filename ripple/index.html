@@ -1614,7 +1614,7 @@ document.getElementById('confirm-ok-btn').onclick = () => { if(pendingConfirmFn)
 // ══════════════════════════════════════════════
 //  WEEK UTILS
 // ══════════════════════════════════════════════
-function getWeekDates(off=0) {
+function getWeekDates(off=-1) {
   const now = new Date();
   const day = now.getDay();
   const mon = new Date(now);
