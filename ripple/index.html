@@ -769,7 +769,7 @@ main{max-width:1100px;margin:0 auto;padding:24px 16px 80px;}
    ══════════════════════════════════════════════ */
 const COMMUNITY_OWNER        = 'xZepyx';   // ← your username
 const COMMUNITY_REPO         = 'ripple';        // ← community repo
-const REGISTRATION_TOKEN     = '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'; // ← fine-grained PAT (Actions only)
+const REGISTRATION_TOKEN     = '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'; // ← fine-grained PAT (Actions only)
 
 // Derived URLs — do not edit
 const COMMUNITY_RAW_URL =
@@ -1536,7 +1536,7 @@ async function dispatchToCommnunity(eventType, payload) {
   const res = await fetch(COMMUNITY_DISPATCH_URL, {
     method: 'POST',
     headers: {
-      'Authorization':        `token ${REGISTRATION_TOKEN}`,
+      'Authorization':        `Bearer ${REGISTRATION_TOKEN}`,
       'Accept':               'application/vnd.github+json',
       'Content-Type':         'application/json',
       'X-GitHub-Api-Version': '2022-11-28',
