@@ -91,7 +91,6 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:var(--font-body);background:var(--md-surface);color:var(--md-on-surface);min-height:100vh;transition:background .3s,color .3s;overflow-x:hidden;}
 
-/* Material Symbols helper */
 .icon{font-family:'Material Symbols Rounded';font-size:20px;font-weight:400;line-height:1;vertical-align:middle;user-select:none;flex-shrink:0;font-style:normal;}
 .icon-sm{font-size:16px;} .icon-lg{font-size:24px;} .icon-xl{font-size:32px;}
 
@@ -150,13 +149,13 @@ body{font-family:var(--font-body);background:var(--md-surface);color:var(--md-on
 .sync-indicator.err{background:var(--md-error);}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
 
-/* ══ NAV TABS (page switcher) ══ */
+/* ══ NAV TABS ══ */
 .nav-tabs{display:flex;gap:2px;}
 .nav-tab{padding:8px 16px;border:none;border-radius:var(--md-shape-full);background:transparent;color:var(--md-on-surface-variant);font-family:var(--font-label);font-size:.85rem;font-weight:600;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:6px;white-space:nowrap;}
 .nav-tab:hover{background:var(--md-surface-container-high);color:var(--md-on-surface);}
 .nav-tab.active{background:var(--md-primary-container);color:var(--md-on-primary-container);}
 
-/* ══ MAIN / PAGE LAYOUT ══ */
+/* ══ MAIN ══ */
 main{max-width:1100px;margin:0 auto;padding:24px 16px 80px;}
 .page{display:none;} .page.active{display:block;}
 
@@ -206,8 +205,6 @@ main{max-width:1100px;margin:0 auto;padding:24px 16px 80px;}
 .card-menu-btn:hover{background:var(--md-surface-container-high);}
 .card-menu-btn.del:hover{background:var(--md-error-container);color:var(--md-error);}
 .drag-handle{cursor:grab;color:var(--md-outline);} .drag-handle:active{cursor:grabbing;}
-
-/* ══ DOT VIEW ══ */
 .dot-header-row{display:flex;gap:3px;margin-bottom:5px;}
 .dot-hd{width:26px;text-align:center;font-family:var(--font-label);font-size:.62rem;font-weight:700;color:var(--md-outline);text-transform:uppercase;letter-spacing:.04em;}
 .dot-hd.is-today{color:var(--md-primary);}
@@ -387,70 +384,19 @@ main{max-width:1100px;margin:0 auto;padding:24px 16px 80px;}
 /* ══════════════════════════════════
    COMMUNITY PAGE
    ══════════════════════════════════ */
-.community-hero {
-  background: linear-gradient(135deg,
-    color-mix(in srgb, var(--md-primary) 18%, var(--md-surface)) 0%,
-    color-mix(in srgb, var(--md-secondary) 14%, var(--md-surface)) 100%
-  );
-  border-radius: var(--md-shape-xl);
-  padding: 32px;
-  margin-bottom: 24px;
-  border: 1px solid var(--md-outline-variant);
-  position: relative;
-  overflow: hidden;
-}
-.community-hero::before {
-  content: '🌊';
-  position: absolute; right: 24px; top: 50%; transform: translateY(-50%);
-  font-size: 5rem; opacity: .12; pointer-events: none;
-}
-.community-hero-title {
-  font-family: var(--font-display);
-  font-size: 1.6rem; font-weight: 700;
-  color: var(--md-on-surface);
-  margin-bottom: 4px;
-}
-.community-hero-sub {
-  font-size: .88rem; color: var(--md-on-surface-variant);
-  margin-bottom: 20px;
-}
-.community-stats-grid {
-  display: grid; grid-template-columns: repeat(4,1fr); gap: 12px;
-}
+.community-hero{background:linear-gradient(135deg,color-mix(in srgb, var(--md-primary) 18%, var(--md-surface)) 0%,color-mix(in srgb, var(--md-secondary) 14%, var(--md-surface)) 100%);border-radius:var(--md-shape-xl);padding:32px;margin-bottom:24px;border:1px solid var(--md-outline-variant);position:relative;overflow:hidden;}
+.community-hero::before{content:'🌊';position:absolute;right:24px;top:50%;transform:translateY(-50%);font-size:5rem;opacity:.12;pointer-events:none;}
+.community-hero-title{font-family:var(--font-display);font-size:1.6rem;font-weight:700;color:var(--md-on-surface);margin-bottom:4px;}
+.community-hero-sub{font-size:.88rem;color:var(--md-on-surface-variant);margin-bottom:20px;}
+.community-stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
 @media(max-width:640px){.community-stats-grid{grid-template-columns:repeat(2,1fr);}}
-.community-stat {
-  background: var(--md-surface-container-low);
-  border-radius: var(--md-shape-lg);
-  padding: 16px; text-align: center;
-  border: 1px solid var(--md-outline-variant);
-}
-.community-stat-val {
-  font-family: var(--font-display); font-size: 1.8rem; font-weight: 700;
-  color: var(--md-primary); line-height: 1;
-}
-.community-stat-lbl {
-  font-family: var(--font-label); font-size: .68rem; font-weight: 700;
-  color: var(--md-on-surface-variant); text-transform: uppercase;
-  letter-spacing: .08em; margin-top: 4px;
-}
-
-/* Charts */
-.charts-row {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
-  margin-bottom: 24px;
-}
+.community-stat{background:var(--md-surface-container-low);border-radius:var(--md-shape-lg);padding:16px;text-align:center;border:1px solid var(--md-outline-variant);}
+.community-stat-val{font-family:var(--font-display);font-size:1.8rem;font-weight:700;color:var(--md-primary);line-height:1;}
+.community-stat-lbl{font-family:var(--font-label);font-size:.68rem;font-weight:700;color:var(--md-on-surface-variant);text-transform:uppercase;letter-spacing:.08em;margin-top:4px;}
+.charts-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px;}
 @media(max-width:700px){.charts-row{grid-template-columns:1fr;}}
-.chart-card {
-  background: var(--md-surface-container-low);
-  border-radius: var(--md-shape-xl);
-  padding: 24px;
-  border: 1px solid var(--md-outline-variant);
-}
-.chart-title {
-  font-family: var(--font-display); font-size: 1rem; font-weight: 700;
-  color: var(--md-on-surface); margin-bottom: 20px;
-  display: flex; align-items: center; gap: 8px;
-}
+.chart-card{background:var(--md-surface-container-low);border-radius:var(--md-shape-xl);padding:24px;border:1px solid var(--md-outline-variant);}
+.chart-title{font-family:var(--font-display);font-size:1rem;font-weight:700;color:var(--md-on-surface);margin-bottom:20px;display:flex;align-items:center;gap:8px;}
 .donut-wrap{display:flex;align-items:center;gap:20px;}
 .donut-svg{width:100px;height:100px;flex-shrink:0;}
 .donut-legend{display:flex;flex-direction:column;gap:10px;flex:1;}
@@ -463,60 +409,19 @@ main{max-width:1100px;margin:0 auto;padding:24px 16px 80px;}
 .bar-track{flex:1;height:8px;background:var(--md-surface-container-highest);border-radius:99px;overflow:hidden;}
 .bar-fill{height:100%;border-radius:99px;transition:width .6s cubic-bezier(.4,0,.2,1);}
 .bar-count{font-family:var(--font-label);font-size:.72rem;font-weight:700;color:var(--md-on-surface-variant);min-width:18px;}
-
-/* Privacy notice */
-.privacy-banner {
-  background: var(--md-surface-container);
-  border: 1px solid var(--md-outline-variant);
-  border-radius: var(--md-shape-lg);
-  padding: 12px 16px;
-  display: flex; align-items: flex-start; gap: 10px;
-  font-size: .8rem; color: var(--md-on-surface-variant);
-  line-height: 1.6; margin-bottom: 20px;
-}
+.privacy-banner{background:var(--md-surface-container);border:1px solid var(--md-outline-variant);border-radius:var(--md-shape-lg);padding:12px 16px;display:flex;align-items:flex-start;gap:10px;font-size:.8rem;color:var(--md-on-surface-variant);line-height:1.6;margin-bottom:20px;}
 .privacy-banner .icon{color:var(--md-primary);flex-shrink:0;margin-top:1px;}
-
-/* User list */
-.users-toolbar {
-  display: flex; align-items: center; gap: 10px;
-  margin-bottom: 16px; flex-wrap: wrap;
-}
-.users-search {
-  flex: 1; min-width: 200px;
-  padding: 10px 14px;
-  background: var(--md-surface-container-highest);
-  border: 1.5px solid var(--md-outline-variant);
-  border-radius: var(--md-shape-full);
-  color: var(--md-on-surface); font-family: var(--font-body); font-size: .9rem;
-  outline: none; transition: border-color .2s;
-}
+.users-toolbar{display:flex;align-items:center;gap:10px;margin-bottom:16px;flex-wrap:wrap;}
+.users-search{flex:1;min-width:200px;padding:10px 14px;background:var(--md-surface-container-highest);border:1.5px solid var(--md-outline-variant);border-radius:var(--md-shape-full);color:var(--md-on-surface);font-family:var(--font-body);font-size:.9rem;outline:none;transition:border-color .2s;}
 .users-search:focus{border-color:var(--md-primary);}
 .users-search::placeholder{color:var(--md-outline);}
-.filter-chip {
-  padding: 8px 14px; border-radius: var(--md-shape-full);
-  border: 1.5px solid var(--md-outline-variant);
-  background: transparent; color: var(--md-on-surface-variant);
-  font-family: var(--font-label); font-size: .8rem; font-weight: 600;
-  cursor: pointer; transition: all .2s;
-}
+.filter-chip{padding:8px 14px;border-radius:var(--md-shape-full);border:1.5px solid var(--md-outline-variant);background:transparent;color:var(--md-on-surface-variant);font-family:var(--font-label);font-size:.8rem;font-weight:600;cursor:pointer;transition:all .2s;}
 .filter-chip.active{background:var(--md-primary-container);color:var(--md-on-primary-container);border-color:transparent;}
 .filter-chip:hover:not(.active){background:var(--md-surface-container-high);}
 .users-list{display:flex;flex-direction:column;gap:8px;}
-.user-card {
-  background: var(--md-surface-container-low);
-  border-radius: var(--md-shape-xl);
-  padding: 16px 20px;
-  border: 1px solid var(--md-outline-variant);
-  display: flex; align-items: center; gap: 16px;
-  transition: box-shadow .2s;
-}
+.user-card{background:var(--md-surface-container-low);border-radius:var(--md-shape-xl);padding:16px 20px;border:1px solid var(--md-outline-variant);display:flex;align-items:center;gap:16px;transition:box-shadow .2s;}
 .user-card:hover{box-shadow:var(--md-shadow-1);}
-.user-avatar {
-  width: 44px; height: 44px; border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-family: var(--font-display); font-size: 1.1rem; font-weight: 700;
-  color: white; flex-shrink: 0; overflow: hidden;
-}
+.user-avatar{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:1.1rem;font-weight:700;color:white;flex-shrink:0;overflow:hidden;}
 .user-avatar img{width:100%;height:100%;object-fit:cover;border-radius:50%;}
 .user-info{flex:1;min-width:0;}
 .user-name{font-family:var(--font-label);font-size:.95rem;font-weight:700;color:var(--md-on-surface);margin-bottom:3px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
@@ -530,31 +435,43 @@ main{max-width:1100px;margin:0 auto;padding:24px 16px 80px;}
 .user-stat-val{font-family:var(--font-display);font-size:1.1rem;font-weight:700;color:var(--md-primary);line-height:1;}
 .user-stat-lbl{font-family:var(--font-label);font-size:.62rem;font-weight:700;color:var(--md-on-surface-variant);text-transform:uppercase;letter-spacing:.06em;margin-top:2px;}
 .user-joined{font-family:var(--font-label);font-size:.72rem;color:var(--md-on-surface-variant);flex-shrink:0;white-space:nowrap;}
-.community-loading {
-  display: flex; align-items: center; justify-content: center;
-  gap: 12px; padding: 40px;
-  color: var(--md-on-surface-variant); font-size: .88rem;
-}
+.community-loading{display:flex;align-items:center;justify-content:center;gap:12px;padding:40px;color:var(--md-on-surface-variant);font-size:.88rem;}
 
-/* Community sync state */
-.community-sync-bar {
-  display: flex; align-items: center; gap: 8px;
-  padding: 10px 16px;
+/* Community sync bar */
+.community-sync-bar{display:flex;align-items:center;gap:10px;padding:12px 16px;background:var(--md-surface-container);border-radius:var(--md-shape-lg);border:1px solid var(--md-outline-variant);margin-bottom:20px;font-family:var(--font-label);font-size:.82rem;color:var(--md-on-surface-variant);flex-wrap:wrap;}
+.community-sync-bar-right{display:flex;align-items:center;gap:8px;margin-left:auto;}
+
+/* Sync my profile button — visible only for GitHub users on community page */
+.sync-profile-btn{
+  display:none; /* shown via JS for GitHub users */
+  align-items:center; gap:6px;
+  padding:8px 18px;
+  background:var(--md-primary); color:var(--md-on-primary);
+  border:none; border-radius:var(--md-shape-full);
+  font-family:var(--font-label); font-size:.85rem; font-weight:700;
+  cursor:pointer; transition:opacity .2s,transform .1s;
+}
+.sync-profile-btn:hover{opacity:.88;}
+.sync-profile-btn:active{transform:scale(.97);}
+.sync-profile-btn:disabled{opacity:.45;cursor:not-allowed;}
+.sync-profile-btn.visible{display:flex;}
+
+.refresh-btn{padding:7px 14px;background:transparent;border:1.5px solid var(--md-outline-variant);border-radius:var(--md-shape-full);color:var(--md-on-surface-variant);font-family:var(--font-label);font-size:.8rem;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:4px;transition:background .2s;}
+.refresh-btn:hover{background:var(--md-surface-container-high);}
+
+/* local-only notice on community page */
+.local-only-notice{
   background: var(--md-surface-container);
-  border-radius: var(--md-shape-lg);
   border: 1px solid var(--md-outline-variant);
-  margin-bottom: 20px;
-  font-family: var(--font-label); font-size: .82rem;
+  border-radius: var(--md-shape-lg);
+  padding: 14px 18px;
+  font-size: .85rem;
   color: var(--md-on-surface-variant);
+  line-height: 1.6;
+  margin-bottom: 20px;
+  display: none;
 }
-.community-sync-bar button {
-  margin-left: auto;
-  padding: 6px 14px;
-  background: var(--md-primary); color: var(--md-on-primary);
-  border: none; border-radius: var(--md-shape-full);
-  font-family: var(--font-label); font-size: .8rem; font-weight: 600;
-  cursor: pointer; display: flex; align-items: center; gap: 4px;
-}
+.local-only-notice.visible { display: block; }
 </style>
 </head>
 <body>
@@ -682,7 +599,6 @@ main{max-width:1100px;margin:0 auto;padding:24px 16px 80px;}
         <div class="app-logo-icon"><i class="icon" style="font-size:1.1rem">water_drop</i></div>
         <span class="app-name">Ripple</span>
       </div>
-      <!-- Page nav tabs -->
       <div class="nav-tabs">
         <button class="nav-tab active" id="nav-tab-habits" onclick="showPage('habits')"><i class="icon icon-sm">today</i> Habits</button>
         <button class="nav-tab" id="nav-tab-community" onclick="showPage('community')"><i class="icon icon-sm">people</i> Community</button>
@@ -715,7 +631,6 @@ main{max-width:1100px;margin:0 auto;padding:24px 16px 80px;}
       <div class="stat-card"><i class="stat-icon">percent</i><div class="stat-value" id="stat-pct">0%</div><div class="stat-label">Completion</div></div>
       <div class="stat-card"><i class="stat-icon">format_list_bulleted</i><div class="stat-value" id="stat-total">0</div><div class="stat-label">Total Habits</div></div>
     </div>
-    <!-- Daily -->
     <div class="section">
       <div class="section-head">
         <i class="icon" style="color:var(--md-primary)">wb_sunny</i>
@@ -731,7 +646,6 @@ main{max-width:1100px;margin:0 auto;padding:24px 16px 80px;}
       <div class="dot-view" id="daily-dot-view"><div class="habits-grid" id="daily-grid"></div></div>
       <div class="classic-view" id="daily-table-view"><div class="m3-table-wrap"><table class="m3-table"><thead><tr id="daily-table-head"></tr></thead><tbody id="daily-table-body"></tbody></table></div></div>
     </div>
-    <!-- Weekly -->
     <div class="section">
       <div class="section-head">
         <i class="icon" style="color:var(--md-primary)">calendar_view_week</i>
@@ -747,7 +661,7 @@ main{max-width:1100px;margin:0 auto;padding:24px 16px 80px;}
       <div class="dot-view" id="weekly-dot-view"><div class="habits-grid" id="weekly-grid"></div></div>
       <div class="classic-view" id="weekly-table-view"><div class="m3-table-wrap"><table class="m3-table"><thead><tr id="weekly-table-head"></tr></thead><tbody id="weekly-table-body"></tbody></table></div></div>
     </div>
-  </div><!-- /page-habits -->
+  </div>
 
   <!-- ════ COMMUNITY PAGE ════ -->
   <div class="page" id="page-community">
@@ -763,15 +677,29 @@ main{max-width:1100px;margin:0 auto;padding:24px 16px 80px;}
       </div>
     </div>
 
-    <!-- Community sync status bar -->
+    <!-- Local-only notice (hidden for GitHub users) -->
+    <div class="local-only-notice" id="local-only-notice">
+      <i class="icon icon-sm" style="color:var(--md-primary);vertical-align:middle">visibility</i>
+      You're in <strong>local mode</strong> — you can browse the community feed but won't appear in it.
+      Connect a GitHub repo in <strong>Settings</strong> to join.
+    </div>
+
+    <!-- Sync bar — shown for GitHub users -->
     <div class="community-sync-bar" id="community-sync-bar">
       <div class="sync-indicator" id="community-sync-dot"></div>
-      <span id="community-sync-label">Loading community data…</span>
-      <button onclick="loadCommunityData(true)"><i class="icon icon-sm">refresh</i> Refresh</button>
+      <span id="community-sync-label">Loading…</span>
+      <div class="community-sync-bar-right">
+        <!-- "Sync My Profile" — only visible for GitHub users -->
+        <button class="sync-profile-btn" id="sync-profile-btn" onclick="syncMyProfile()">
+          <i class="icon icon-sm">upload</i> Sync My Profile
+        </button>
+        <button class="refresh-btn" onclick="loadCommunityData(true)">
+          <i class="icon icon-sm">refresh</i> Refresh
+        </button>
+      </div>
     </div>
 
     <div class="charts-row">
-      <!-- Donut chart -->
       <div class="chart-card">
         <div class="chart-title"><i class="icon icon-sm" style="color:var(--md-primary)">pie_chart</i> Signup Type</div>
         <div class="donut-wrap">
@@ -790,14 +718,12 @@ main{max-width:1100px;margin:0 auto;padding:24px 16px 80px;}
           </div>
         </div>
       </div>
-      <!-- Bar chart -->
       <div class="chart-card">
         <div class="chart-title"><i class="icon icon-sm" style="color:var(--md-primary)">bar_chart</i> Signups by Weekday</div>
         <div class="bar-chart-container" id="signup-bar"></div>
       </div>
     </div>
 
-    <!-- User list section -->
     <div class="section">
       <div class="section-head">
         <i class="icon" style="color:var(--md-primary)">group</i>
@@ -807,14 +733,14 @@ main{max-width:1100px;margin:0 auto;padding:24px 16px 80px;}
 
       <div class="privacy-banner">
         <i class="icon">shield</i>
-        <span><strong>Privacy first.</strong> Community data is stored in a public GitHub JSON — only non-sensitive info is written: your GitHub username, public repo name, join date and habit counts. Never tokens, checks or personal data.</span>
+        <span><strong>Privacy first.</strong> Only non-sensitive info is shared: your GitHub username, public repo name, join date and habit counts. Tokens, check data and notes are never shared.</span>
       </div>
 
       <div class="users-toolbar">
         <input class="users-search" type="text" placeholder="🔍  Search by name or repo…" oninput="filterUsers(this.value)" id="user-search" />
-        <button class="filter-chip active" data-filter="all" onclick="setUserFilter('all',this)">All</button>
-        <button class="filter-chip" data-filter="github" onclick="setUserFilter('github',this)">GitHub</button>
-        <button class="filter-chip" data-filter="local" onclick="setUserFilter('local',this)">Local</button>
+        <button class="filter-chip active" data-filter="all"    onclick="setUserFilter('all',this)">All</button>
+        <button class="filter-chip"        data-filter="github" onclick="setUserFilter('github',this)">GitHub</button>
+        <button class="filter-chip"        data-filter="local"  onclick="setUserFilter('local',this)">Local</button>
       </div>
 
       <div class="users-list" id="users-list">
@@ -830,62 +756,56 @@ main{max-width:1100px;margin:0 auto;padding:24px 16px 80px;}
 
 <script>
 /* ══════════════════════════════════════════════
-   CONSTANTS
+   COMMUNITY CONFIG
+   ══════════════════════════════════════════════
+   Set these two constants to YOUR community repo.
+   The repo must be PUBLIC so community-data.json
+   can be read by the browser without any token.
+
+   REGISTRATION_TOKEN is a fine-grained PAT scoped
+   ONLY to this repo with "Actions: Read & Write".
+   It cannot read code or access any other repo.
+   It is used to trigger the register-user workflow.
    ══════════════════════════════════════════════ */
-// ISO week: Mon=index 0 ... Sun=index 6
-const DOW_LABELS = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
-const COLORS = ['#6750A4','#006A6A','#8B0057','#7A5900','#1565C0','#2E7D32','#C62828','#4527A0','#00695C','#AD1457'];
-const EMOJIS = ['🌱','🏃','📚','💧','🧘','🍎','💤','🎯','✍️','🎵','💪','🌿'];
+const COMMUNITY_OWNER        = 'xZepyx';   // ← your username
+const COMMUNITY_REPO         = 'ripple';        // ← community repo
+const REGISTRATION_TOKEN     = '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'; // ← fine-grained PAT (Actions only)
+
+// Derived URLs — do not edit
+const COMMUNITY_RAW_URL =
+  `https://raw.githubusercontent.com/${COMMUNITY_OWNER}/${COMMUNITY_REPO}/main/community-data.json`;
+const COMMUNITY_DISPATCH_URL =
+  `https://api.github.com/repos/${COMMUNITY_OWNER}/${COMMUNITY_REPO}/dispatches`;
 
 /* ══════════════════════════════════════════════
-   COMMUNITY CONFIG
-   ——————————————————————————————————————————————
-   The community registry is a PUBLIC GitHub repo
-   whose token is supplied via GitHub Actions (see
-   .github/workflows/community-proxy.yml).
-
-   The HTML only ever reads community data via the
-   raw.githubusercontent.com URL (no auth needed for
-   public repos) and WRITES via the GitHub Actions
-   dispatch endpoint — so NO community token ever
-   lives in the browser.
-
-   Set COMMUNITY_REPO_OWNER / COMMUNITY_REPO_NAME
-   to the public repo that holds community-data.json.
+   CONSTANTS
    ══════════════════════════════════════════════ */
-const COMMUNITY_OWNER = 'xZepyx';
-const COMMUNITY_REPO  = 'ripple';
-const COMMUNITY_PATH  = 'community-data.json';
-const COMMUNITY_RAW_URL =
-  `https://raw.githubusercontent.com/${COMMUNITY_OWNER}/${COMMUNITY_REPO}/main/${COMMUNITY_PATH}`;
-// GitHub Actions workflow_dispatch URL (write via proxy — no token in browser)
-const COMMUNITY_DISPATCH_URL =
-  `https://api.github.com/repos/${COMMUNITY_OWNER}/${COMMUNITY_REPO}/actions/workflows/update-community.yml/dispatches`;
+const DOW_LABELS  = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+const COLORS      = ['#6750A4','#006A6A','#8B0057','#7A5900','#1565C0','#2E7D32','#C62828','#4527A0','#00695C','#AD1457'];
+const EMOJIS      = ['🌱','🏃','📚','💧','🧘','🍎','💤','🎯','✍️','🎵','💪','🌿'];
 
 /* ══ STATE ══ */
-let config = {};
-let data = { daily:[], weekly:[], checks:{}, plans:{}, notes:{} };
-let weekOffset = 0;
-let ghFileSha = null;
-let dirtyTimer = null;
-let pendingConfirmFn = null;
-let prefs = { theme:'light', accent:'', defaultView:'dot' };
-let viewModes = { daily:'dot', weekly:'dot' };
-let selectedAddColor = COLORS[0];
+let config          = {};
+let data            = { daily:[], weekly:[], checks:{}, plans:{}, notes:{} };
+let weekOffset      = 0;
+let ghFileSha       = null;
+let dirtyTimer      = null;
+let pendingConfirmFn= null;
+let prefs           = { theme:'light', accent:'', defaultView:'dot' };
+let viewModes       = { daily:'dot', weekly:'dot' };
+let selectedAddColor= COLORS[0];
 let detailHabitType = null;
-let detailHabitIdx = null;
-let dragSrcType = null, dragSrcIdx = null;
-let currentPage = 'habits';
+let detailHabitIdx  = null;
+let dragSrcType     = null, dragSrcIdx = null;
+let currentPage     = 'habits';
 
 // Community state
-let communityUsers = [];
+let communityUsers  = [];
 let communityFilter = 'all';
 let communitySearch = '';
 
 /* ══════════════════════════════════════════════
-   DATE UTILS  (Bug-fixed from File B)
-   — uses local date parts, not .toISOString()
-   — ISO week starts Monday
+   DATE UTILS
    ══════════════════════════════════════════════ */
 function todayKey() {
   const d = new Date();
@@ -893,25 +813,19 @@ function todayKey() {
     String(d.getMonth()+1).padStart(2,'0') + '-' +
     String(d.getDate()).padStart(2,'0');
 }
-
 function dateKey(d) {
   return d.getFullYear() + '-' +
     String(d.getMonth()+1).padStart(2,'0') + '-' +
     String(d.getDate()).padStart(2,'0');
 }
-
-/** Returns Mon-Sun (7 dates) for the week at `off` weeks from today */
 function getWeekDates(off = 0) {
-  const now = new Date();
-  now.setHours(0,0,0,0);
-  const jsDay = now.getDay();               // 0=Sun … 6=Sat
-  const isoDay = jsDay === 0 ? 6 : jsDay - 1; // 0=Mon … 6=Sun
+  const now    = new Date(); now.setHours(0,0,0,0);
+  const jsDay  = now.getDay();
+  const isoDay = jsDay === 0 ? 6 : jsDay - 1;
   const monday = new Date(now);
   monday.setDate(now.getDate() - isoDay + off * 7);
   return Array.from({length:7}, (_, i) => {
-    const d = new Date(monday);
-    d.setDate(monday.getDate() + i);
-    return d;
+    const d = new Date(monday); d.setDate(monday.getDate() + i); return d;
   });
 }
 
@@ -947,45 +861,38 @@ function showApp() {
 function loadPrefs() {
   const s = localStorage.getItem('ripple_prefs');
   if (s) prefs = {...prefs, ...JSON.parse(s)};
-  applyTheme(prefs.theme);
-  applyAccent(prefs.accent);
+  applyTheme(prefs.theme); applyAccent(prefs.accent);
   viewModes = { daily: prefs.defaultView||'dot', weekly: prefs.defaultView||'dot' };
   document.getElementById('layout-toggle').checked = prefs.defaultView !== 'table';
-  syncThemeUI(prefs.theme);
-  syncAccentUI(prefs.accent);
+  syncThemeUI(prefs.theme); syncAccentUI(prefs.accent);
 }
 function savePrefs() { localStorage.setItem('ripple_prefs', JSON.stringify(prefs)); }
 function applyTheme(theme) {
   const html = document.documentElement;
-  if (theme === 'auto') {
-    html.setAttribute('data-theme', window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-  } else {
-    html.setAttribute('data-theme', theme);
-  }
+  if (theme === 'auto') html.setAttribute('data-theme', window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  else html.setAttribute('data-theme', theme);
 }
 function applyAccent(accent) { document.documentElement.setAttribute('data-accent', accent || ''); }
-function setTheme(val) { prefs.theme = val; savePrefs(); applyTheme(val); syncThemeUI(val); }
+function setTheme(val)  { prefs.theme  = val; savePrefs(); applyTheme(val);  syncThemeUI(val);  }
 function setAccent(val) { prefs.accent = val; savePrefs(); applyAccent(val); syncAccentUI(val); }
-function syncThemeUI(val) { document.querySelectorAll('.theme-option').forEach(o => o.classList.toggle('active', o.dataset.themeVal === val)); }
+function syncThemeUI(val)  { document.querySelectorAll('.theme-option').forEach(o  => o.classList.toggle('active', o.dataset.themeVal   === val)); }
 function syncAccentUI(val) { document.querySelectorAll('.accent-option').forEach(o => o.classList.toggle('active', o.dataset.accentVal === val)); }
-function toggleDefaultLayout(isDot) {
-  prefs.defaultView = isDot ? 'dot' : 'table';
-  savePrefs(); viewModes.daily = prefs.defaultView; viewModes.weekly = prefs.defaultView; renderAll();
-}
+function toggleDefaultLayout(isDot) { prefs.defaultView = isDot ? 'dot' : 'table'; savePrefs(); viewModes.daily = prefs.defaultView; viewModes.weekly = prefs.defaultView; renderAll(); }
 function setViewMode(type, mode) {
   viewModes[type] = mode; renderSection(type);
-  document.getElementById(`${type}-vt-dot`).classList.toggle('active', mode==='dot');
+  document.getElementById(`${type}-vt-dot`).classList.toggle('active',   mode==='dot');
   document.getElementById(`${type}-vt-table`).classList.toggle('active', mode==='table');
 }
 
 /* ══ PAGE NAV ══ */
 function showPage(page) {
   currentPage = page;
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.page').forEach(p    => p.classList.remove('active'));
   document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
   document.getElementById('page-' + page).classList.add('active');
   document.getElementById('nav-tab-' + page).classList.add('active');
-  if (page === 'community') loadCommunityData(false);
+  if (page === 'community') initCommunityPage();
+  if (page === 'settings')  updateSettingsGhStatus();
 }
 
 /* ══ AUTH ══ */
@@ -1000,11 +907,11 @@ function togglePw(id, btn) {
   btn.textContent = inp.type==='password' ? 'visibility' : 'visibility_off';
 }
 function saveGitHubConfig() {
-  const token = document.getElementById('gh-token').value.trim();
-  const owner = document.getElementById('gh-owner').value.trim();
-  const repo  = document.getElementById('gh-repo').value.trim();
-  const path  = document.getElementById('gh-path').value.trim() || 'ripple-data.json';
-  const errEl = document.getElementById('gh-error');
+  const token  = document.getElementById('gh-token').value.trim();
+  const owner  = document.getElementById('gh-owner').value.trim();
+  const repo   = document.getElementById('gh-repo').value.trim();
+  const path   = document.getElementById('gh-path').value.trim() || 'ripple-data.json';
+  const errEl  = document.getElementById('gh-error');
   if (!token || !owner || !repo) {
     document.getElementById('gh-error-text').textContent = 'Please fill in all fields.';
     errEl.classList.add('visible'); return;
@@ -1015,7 +922,6 @@ function saveGitHubConfig() {
   closeAuth(); showApp(); loadFromGitHub();
 }
 function useLocalOnly() {
-  // generate a stable local uid so community entries are stable across sessions
   const uid = localStorage.getItem('ripple_local_uid') || (Date.now().toString(36) + Math.random().toString(36).slice(2,5));
   localStorage.setItem('ripple_local_uid', uid);
   config = { localOnly: true, _uid: uid };
@@ -1045,11 +951,10 @@ function signOut() {
 }
 
 /* ══ SETTINGS ══ */
-function openSettings() { document.getElementById('settings-drawer').classList.add('visible'); }
+function openSettings()  { document.getElementById('settings-drawer').classList.add('visible'); }
 function closeSettings() { document.getElementById('settings-drawer').classList.remove('visible'); }
 function updateSettingsGhStatus() {
-  const el = document.getElementById('settings-gh-status');
-  if (!el) return;
+  const el = document.getElementById('settings-gh-status'); if (!el) return;
   if (config.localOnly) {
     el.innerHTML = `<div style="font-size:.85rem;color:var(--md-on-surface-variant);line-height:1.6">Running in local mode.<br>Data stored in browser localStorage.</div>`;
   } else if (config.owner) {
@@ -1061,8 +966,8 @@ function updateSettingsGhStatus() {
 
 /* ══ CONFIRM ══ */
 function showConfirm(title, msg, onOk, okLabel='Delete') {
-  document.getElementById('confirm-title').textContent = title;
-  document.getElementById('confirm-msg').textContent = msg;
+  document.getElementById('confirm-title').textContent  = title;
+  document.getElementById('confirm-msg').textContent    = msg;
   document.getElementById('confirm-ok-btn').textContent = okLabel;
   pendingConfirmFn = onOk;
   document.getElementById('confirm-dialog').classList.add('visible');
@@ -1073,38 +978,31 @@ document.getElementById('confirm-ok-btn').onclick = () => { if (pendingConfirmFn
 /* ══ WEEK NAV ══ */
 function renderWeekNav() {
   const dates = getWeekDates(weekOffset);
-  const fmt = d => d.toLocaleDateString('en-GB', {day:'numeric', month:'short'});
+  const fmt   = d => d.toLocaleDateString('en-GB', {day:'numeric', month:'short'});
   document.getElementById('week-label').textContent = `${fmt(dates[0])} – ${fmt(dates[6])}`;
   renderAll();
 }
 function changeWeek(d) { weekOffset += d; renderWeekNav(); }
-function goToday() { weekOffset = 0; renderWeekNav(); }
+function goToday()     { weekOffset  = 0; renderWeekNav(); }
 
 /* ══ RENDER ══ */
-function renderAll() { renderSection('daily'); renderSection('weekly'); renderStats(); }
-
+function renderAll()          { renderSection('daily'); renderSection('weekly'); renderStats(); }
 function renderSection(type) {
   const mode = viewModes[type];
-  document.getElementById(`${type}-dot-view`).classList.toggle('hidden', mode !== 'dot');
+  document.getElementById(`${type}-dot-view`).classList.toggle('hidden',  mode !== 'dot');
   document.getElementById(`${type}-table-view`).classList.toggle('active', mode === 'table');
-  document.getElementById(`${type}-vt-dot`).classList.toggle('active', mode==='dot');
+  document.getElementById(`${type}-vt-dot`).classList.toggle('active',   mode==='dot');
   document.getElementById(`${type}-vt-table`).classList.toggle('active', mode==='table');
-  if (mode === 'dot') renderDotView(type);
-  else renderTableView(type);
+  if (mode === 'dot') renderDotView(type); else renderTableView(type);
   document.getElementById(`${type}-badge`).textContent = (data[type]||[]).length;
 }
-
-function sanitizeEmoji(str) {
-  if (!str) return '';
-  if (/[\xC3\xC2]/.test(str)) return ''; // strip Latin-1 encoding garbage
-  return str;
-}
+function sanitizeEmoji(str) { if (!str) return ''; if (/[\xC3\xC2]/.test(str)) return ''; return str; }
 
 /* ── DOT VIEW ── */
 function renderDotView(type) {
-  const dates = getWeekDates(weekOffset);
-  const ct = type === 'daily' ? 'd' : 'w';
-  const grid = document.getElementById(`${type}-grid`);
+  const dates  = getWeekDates(weekOffset);
+  const ct     = type === 'daily' ? 'd' : 'w';
+  const grid   = document.getElementById(`${type}-grid`);
   const habits = data[type] || [];
   grid.innerHTML = '';
   if (!habits.length) {
@@ -1113,13 +1011,12 @@ function renderDotView(type) {
   }
   habits.forEach((habit, hi) => {
     const hColor = habit.color || COLORS[hi % COLORS.length];
-    const done = dates.filter(d => getCheck(ct, habit.id, dateKey(d))).length;
-    const goal = habit.goal || (type === 'daily' ? 7 : 3);
-    const pct = Math.min(100, Math.round(done / goal * 100));
+    const done   = dates.filter(d => getCheck(ct, habit.id, dateKey(d))).length;
+    const goal   = habit.goal || (type === 'daily' ? 7 : 3);
+    const pct    = Math.min(100, Math.round(done / goal * 100));
     const streak = calcStreak(ct, habit.id);
-    const emoji = sanitizeEmoji(habit.emoji) || EMOJIS[hi % EMOJIS.length];
-
-    const card = document.createElement('div');
+    const emoji  = sanitizeEmoji(habit.emoji) || EMOJIS[hi % EMOJIS.length];
+    const card   = document.createElement('div');
     card.className = 'habit-card'; card.style.cssText = `--hc:${hColor}`;
     card.dataset.type = type; card.dataset.idx = hi; card.draggable = true;
     card.addEventListener('dragstart', onDragStart);
@@ -1128,7 +1025,6 @@ function renderDotView(type) {
     card.addEventListener('dragleave', onDragLeave);
     card.addEventListener('drop',      onDrop);
     card.addEventListener('dragend',   onDragEnd);
-
     const hdr = document.createElement('div'); hdr.className = 'habit-card-header';
     hdr.innerHTML = `
       <div class="habit-card-icon" onclick="openDetail('${type}',${hi})" title="Open detail">${emoji}</div>
@@ -1144,32 +1040,28 @@ function renderDotView(type) {
         <button class="card-menu-btn del" onclick="deleteHabit('${type}',${hi})" title="Delete">delete</button>
       </div>`;
     card.appendChild(hdr);
-
-    // Day letter headers — correct ISO week order Mon…Sun
     const dhdr = document.createElement('div'); dhdr.className = 'dot-header-row';
     dates.forEach((d, i) => {
-      const dk = dateKey(d), isToday = dk === todayKey();
-      const hdEl = document.createElement('div');
+      const isToday = dateKey(d) === todayKey();
+      const hdEl    = document.createElement('div');
       hdEl.className = 'dot-hd' + (isToday ? ' is-today' : '');
-      hdEl.textContent = DOW_LABELS[i][0]; // M T W T F S S
+      hdEl.textContent = DOW_LABELS[i][0];
       dhdr.appendChild(hdEl);
     });
     card.appendChild(dhdr);
-
     const drow = document.createElement('div'); drow.className = 'dot-row';
     dates.forEach(d => {
-      const dk = dateKey(d);
+      const dk      = dateKey(d);
       const checked = getCheck(ct, habit.id, dk);
-      const isFuture = dk > todayKey(), isToday = dk === todayKey();
-      const dot = document.createElement('div');
-      dot.className = 'habit-dot' + (checked ? ' checked-dot' : '') + (isFuture ? ' future-dot' : '') + (isToday && !checked ? ' today-ring' : '');
+      const isFuture= dk > todayKey(), isToday = dk === todayKey();
+      const dot     = document.createElement('div');
+      dot.className = 'habit-dot' + (checked?' checked-dot':'') + (isFuture?' future-dot':'') + (isToday&&!checked?' today-ring':'');
       dot.style.setProperty('--hc', hColor);
       dot.title = d.toLocaleDateString('en-GB', {weekday:'short', day:'numeric', month:'short'});
       if (!isFuture) dot.onclick = () => toggleCheck(ct, habit.id, dk, dot, hColor);
       drow.appendChild(dot);
     });
     card.appendChild(drow);
-
     const ftr = document.createElement('div'); ftr.className = 'habit-card-footer';
     ftr.innerHTML = `<div class="footer-goal-label">Goal</div><input class="footer-goal-input" type="number" min="1" max="7" value="${goal}" onchange="setGoal('${type}',${hi},this.value)" /><div class="footer-prog-wrap"><div class="footer-prog-fill" style="width:${pct}%"></div></div><div class="footer-pct">${pct}%</div>`;
     card.appendChild(ftr);
@@ -1179,45 +1071,28 @@ function renderDotView(type) {
 
 /* ── TABLE VIEW ── */
 function renderTableView(type) {
-  const dates = getWeekDates(weekOffset);
-  const ct = type === 'daily' ? 'd' : 'w';
+  const dates  = getWeekDates(weekOffset);
+  const ct     = type === 'daily' ? 'd' : 'w';
   const habits = data[type] || [];
-  const thead = document.getElementById(`${type}-table-head`);
-  const tbody = document.getElementById(`${type}-table-body`);
-  const tk = todayKey();
-
+  const thead  = document.getElementById(`${type}-table-head`);
+  const tbody  = document.getElementById(`${type}-table-body`);
+  const tk     = todayKey();
   thead.innerHTML = `<th class="habit-col">Habit</th><th>Goal</th><th>Progress</th>
-    ${dates.map((d,i) => {
-      const isToday = dateKey(d) === tk;
-      return `<th${isToday?' class="today-col"':''} >${DOW_LABELS[i][0]}<br><span style="font-weight:400;opacity:.7">${d.getDate()}</span></th>`;
-    }).join('')}<th>Done</th>`;
-
+    ${dates.map((d,i) => { const isToday=dateKey(d)===tk; return `<th${isToday?' class="today-col"':''}>${DOW_LABELS[i][0]}<br><span style="font-weight:400;opacity:.7">${d.getDate()}</span></th>`; }).join('')}<th>Done</th>`;
   tbody.innerHTML = '';
-  if (!habits.length) {
-    tbody.innerHTML = `<tr><td colspan="12" style="padding:32px;text-align:center;color:var(--md-on-surface-variant);font-size:.85rem">No ${type} habits. Add one above.</td></tr>`;
-    return;
-  }
+  if (!habits.length) { tbody.innerHTML=`<tr><td colspan="12" style="padding:32px;text-align:center;color:var(--md-on-surface-variant);font-size:.85rem">No ${type} habits. Add one above.</td></tr>`; return; }
   habits.forEach((habit, hi) => {
     const hColor = habit.color || COLORS[hi % COLORS.length];
-    const done = dates.filter(d => getCheck(ct, habit.id, dateKey(d))).length;
-    const goal = habit.goal || (type === 'daily' ? 7 : 3);
-    const pct = Math.min(100, Math.round(done / goal * 100));
-    const emoji = sanitizeEmoji(habit.emoji) || EMOJIS[hi % EMOJIS.length];
-    const tr = document.createElement('tr');
+    const done   = dates.filter(d => getCheck(ct, habit.id, dateKey(d))).length;
+    const goal   = habit.goal || (type === 'daily' ? 7 : 3);
+    const pct    = Math.min(100, Math.round(done / goal * 100));
+    const emoji  = sanitizeEmoji(habit.emoji) || EMOJIS[hi % EMOJIS.length];
+    const tr     = document.createElement('tr');
     tr.innerHTML = `
-      <td class="habit-col">
-        <div class="table-habit-name" style="--hc:${hColor}">
-          <div class="table-habit-dot"></div>
-          <span style="cursor:pointer" onclick="openDetail('${type}',${hi})">${emoji} ${escHtml(habit.name)}</span>
-          <button class="table-del-btn" onclick="deleteHabit('${type}',${hi})" title="Remove">delete</button>
-        </div>
-      </td>
+      <td class="habit-col"><div class="table-habit-name" style="--hc:${hColor}"><div class="table-habit-dot"></div><span style="cursor:pointer" onclick="openDetail('${type}',${hi})">${emoji} ${escHtml(habit.name)}</span><button class="table-del-btn" onclick="deleteHabit('${type}',${hi})" title="Remove">delete</button></div></td>
       <td><input class="table-goal-input" type="number" min="1" max="7" value="${goal}" onchange="setGoal('${type}',${hi},this.value)" /></td>
       <td><div class="prog-bar-wrap" style="--hc:${hColor}"><div class="prog-bar-fill" style="width:${pct}%"></div></div></td>
-      ${dates.map(d => {
-        const dk = dateKey(d), checked = getCheck(ct, habit.id, dk), isFuture = dk > tk;
-        return `<td><button class="table-check-btn${checked?' checked':''}${isFuture?' future-check':''}" style="--hc:${hColor}" ${isFuture?'disabled':''} onclick="toggleCheckFromTable(this,'${ct}','${habit.id}','${dk}','${hColor}')">check</button></td>`;
-      }).join('')}
+      ${dates.map(d => { const dk=dateKey(d),checked=getCheck(ct,habit.id,dk),isFuture=dk>tk; return `<td><button class="table-check-btn${checked?' checked':''}${isFuture?' future-check':''}" style="--hc:${hColor}" ${isFuture?'disabled':''} onclick="toggleCheckFromTable(this,'${ct}','${habit.id}','${dk}','${hColor}')">check</button></td>`; }).join('')}
       <td><span class="table-done-count" style="--hc:${hColor}">${done}</span></td>`;
     tbody.appendChild(tr);
   });
@@ -1225,26 +1100,19 @@ function renderTableView(type) {
 
 function renderStats() {
   const dates = getWeekDates(weekOffset);
-  const all = [
-    ...(data.daily||[]).map(h => ({h, ct:'d'})),
-    ...(data.weekly||[]).map(h => ({h, ct:'w'}))
-  ];
-  let td = 0, tg = 0;
-  all.forEach(({h, ct}) => {
-    td += dates.filter(d => getCheck(ct, h.id, dateKey(d))).length;
-    tg += h.goal || (ct === 'd' ? 7 : 3);
-  });
-  const pct = tg > 0 ? Math.round(td / tg * 100) : 0;
-  const streak = all.length > 0 ? Math.max(...all.map(({h,ct}) => calcStreak(ct, h.id))) : 0;
-  document.getElementById('stat-done').textContent = td;
+  const all   = [...(data.daily||[]).map(h=>({h,ct:'d'})), ...(data.weekly||[]).map(h=>({h,ct:'w'}))];
+  let td=0, tg=0;
+  all.forEach(({h,ct}) => { td+=dates.filter(d=>getCheck(ct,h.id,dateKey(d))).length; tg+=h.goal||(ct==='d'?7:3); });
+  const pct    = tg > 0 ? Math.round(td/tg*100) : 0;
+  const streak = all.length > 0 ? Math.max(...all.map(({h,ct})=>calcStreak(ct,h.id))) : 0;
+  document.getElementById('stat-done').textContent   = td;
   document.getElementById('stat-streak').textContent = streak || 0;
-  document.getElementById('stat-pct').textContent = pct + '%';
-  document.getElementById('stat-total').textContent = all.length;
+  document.getElementById('stat-pct').textContent    = pct + '%';
+  document.getElementById('stat-total').textContent  = all.length;
 }
 
 /* ══ CHECK LOGIC ══ */
 function getCheck(type, habitId, dk) { return !!data.checks[`${type}|${habitId}|${dk}`]; }
-
 function toggleCheck(type, habitId, dk, dot, hColor) {
   const key = `${type}|${habitId}|${dk}`;
   data.checks[key] = !data.checks[key];
@@ -1253,7 +1121,6 @@ function toggleCheck(type, habitId, dk, dot, hColor) {
   dot.classList.toggle('today-ring', !on && dk === todayKey());
   scheduleSave(); renderStats(); updateCardFooter(type, habitId);
 }
-
 function toggleCheckFromTable(btn, type, habitId, dk) {
   const key = `${type}|${habitId}|${dk}`;
   data.checks[key] = !data.checks[key];
@@ -1262,42 +1129,35 @@ function toggleCheckFromTable(btn, type, habitId, dk) {
   const row = btn.closest('tr');
   if (row) {
     const dates = getWeekDates(weekOffset);
-    const done = dates.filter(d => getCheck(type, habitId, dateKey(d))).length;
+    const done  = dates.filter(d => getCheck(type, habitId, dateKey(d))).length;
     const doneCell = row.querySelector('.table-done-count'); if (doneCell) doneCell.textContent = done;
-    const goal = parseInt(row.querySelector('.table-goal-input').value) || 7;
-    const fill = row.querySelector('.prog-bar-fill');
+    const goal  = parseInt(row.querySelector('.table-goal-input').value) || 7;
+    const fill  = row.querySelector('.prog-bar-fill');
     if (fill) fill.style.width = Math.min(100, Math.round(done/goal*100)) + '%';
   }
 }
-
 function updateCardFooter(type, habitId) {
   const dates = getWeekDates(weekOffset);
-  const ct = type === 'daily' ? 'd' : 'w';
-  const hi = (data[type]||[]).findIndex(h => h.id === habitId);
+  const ct    = type === 'daily' ? 'd' : 'w';
+  const hi    = (data[type]||[]).findIndex(h => h.id === habitId);
   if (hi < 0) return;
   const habit = data[type][hi];
-  const goal = habit.goal || (type === 'daily' ? 7 : 3);
-  const done = dates.filter(d => getCheck(ct, habitId, dateKey(d))).length;
-  const pct = Math.min(100, Math.round(done / goal * 100));
-  const grid = document.getElementById(`${type}-grid`);
-  const cards = grid.querySelectorAll('.habit-card');
+  const goal  = habit.goal || (type==='daily'?7:3);
+  const done  = dates.filter(d => getCheck(ct, habitId, dateKey(d))).length;
+  const pct   = Math.min(100, Math.round(done/goal*100));
+  const cards = document.getElementById(`${type}-grid`).querySelectorAll('.habit-card');
   if (cards[hi]) {
-    const fill = cards[hi].querySelector('.footer-prog-fill');
-    const pctEl = cards[hi].querySelector('.footer-pct');
-    const doneChip = cards[hi].querySelector('.done-count-chip');
-    if (fill) fill.style.width = pct + '%';
-    if (pctEl) pctEl.textContent = pct + '%';
+    const fill    = cards[hi].querySelector('.footer-prog-fill');
+    const pctEl   = cards[hi].querySelector('.footer-pct');
+    const doneChip= cards[hi].querySelector('.done-count-chip');
+    if (fill)     fill.style.width   = pct + '%';
+    if (pctEl)    pctEl.textContent  = pct + '%';
     if (doneChip) doneChip.textContent = `${done}/${goal}`;
   }
 }
-
 function calcStreak(type, habitId) {
-  let s = 0;
-  const d = new Date(); d.setHours(0,0,0,0);
-  for (let i = 0; i < 365; i++) {
-    if (!getCheck(type, habitId, dateKey(d))) break;
-    s++; d.setDate(d.getDate() - 1);
-  }
+  let s=0; const d=new Date(); d.setHours(0,0,0,0);
+  for (let i=0;i<365;i++) { if (!getCheck(type,habitId,dateKey(d))) break; s++; d.setDate(d.getDate()-1); }
   return s;
 }
 
@@ -1307,8 +1167,8 @@ function toggleAddForm(type) {
   const isVisible = form.classList.contains('visible');
   ['daily','weekly'].forEach(t => document.getElementById(`${t}-add-form`).classList.remove('visible'));
   if (!isVisible) {
-    selectedAddColor = COLORS[Math.floor(Math.random() * COLORS.length)];
-    const defGoal = type === 'daily' ? 7 : 3;
+    selectedAddColor = COLORS[Math.floor(Math.random()*COLORS.length)];
+    const defGoal = type==='daily'?7:3;
     form.innerHTML = `
       <div class="add-habit-form-grid">
         <div><label>Habit Name *</label><input type="text" id="${type}-new-name" placeholder="e.g. Morning run" onkeydown="if(event.key==='Enter')confirmAdd('${type}')" /></div>
@@ -1326,13 +1186,11 @@ function toggleAddForm(type) {
     setTimeout(() => document.getElementById(`${type}-new-name`).focus(), 60);
   }
 }
-
 function pickColor(type, c, el) {
   selectedAddColor = c;
   document.querySelectorAll(`#${type}-color-row .color-swatch`).forEach(s => s.classList.remove('selected'));
   el.classList.add('selected');
 }
-
 function confirmAdd(type) {
   const name = document.getElementById(`${type}-new-name`).value.trim();
   if (!name) { snack('Please enter a habit name','err'); return; }
@@ -1340,105 +1198,71 @@ function confirmAdd(type) {
   const emoji = document.getElementById(`${type}-new-emoji`).value.trim() || EMOJIS[(data[type]||[]).length % EMOJIS.length];
   const desc  = document.getElementById(`${type}-new-desc`).value.trim();
   if (!data[type]) data[type] = [];
-  data[type].push({
-    id: Date.now().toString(36) + Math.random().toString(36).slice(2,5),
-    name, goal, color: selectedAddColor, emoji, desc
-  });
+  data[type].push({ id: Date.now().toString(36)+Math.random().toString(36).slice(2,5), name, goal, color:selectedAddColor, emoji, desc });
   document.getElementById(`${type}-add-form`).classList.remove('visible');
   scheduleSave(); renderAll();
   snack(`"${name}" added!`, 'ok');
-  // Update community profile lazily
-  scheduleProfileUpdate();
 }
 
 /* ══ DELETE / GOAL ══ */
 function deleteHabit(type, idx) {
   const name = (data[type]||[])[idx]?.name || 'this habit';
   showConfirm(`Remove "${name}"?`, 'All check data for this habit will be lost.', () => {
-    data[type].splice(idx, 1);
-    scheduleSave(); renderAll();
-    snack('Habit removed', 'info');
-    scheduleProfileUpdate();
+    data[type].splice(idx, 1); scheduleSave(); renderAll(); snack('Habit removed','info');
   });
 }
-
-function setGoal(type, idx, val) {
-  data[type][idx].goal = Math.max(1, parseInt(val) || 1);
-  scheduleSave(); renderAll();
-}
+function setGoal(type, idx, val) { data[type][idx].goal = Math.max(1, parseInt(val)||1); scheduleSave(); renderAll(); }
 
 /* ══ DRAG & DROP ══ */
-function onDragStart(e) {
-  dragSrcType = this.dataset.type; dragSrcIdx = parseInt(this.dataset.idx);
-  this.classList.add('dragging');
-  e.dataTransfer.effectAllowed = 'move';
-  e.dataTransfer.setData('text/plain', dragSrcIdx);
-}
-function onDragOver(e) { e.preventDefault(); e.dataTransfer.dropEffect = 'move'; }
+function onDragStart(e) { dragSrcType=this.dataset.type; dragSrcIdx=parseInt(this.dataset.idx); this.classList.add('dragging'); e.dataTransfer.effectAllowed='move'; e.dataTransfer.setData('text/plain',dragSrcIdx); }
+function onDragOver(e)  { e.preventDefault(); e.dataTransfer.dropEffect='move'; }
 function onDragEnter(e) { this.classList.add('drag-over'); }
 function onDragLeave(e) { this.classList.remove('drag-over'); }
-function onDrop(e) {
+function onDrop(e)      {
   e.preventDefault(); this.classList.remove('drag-over');
-  const targetType = this.dataset.type, targetIdx = parseInt(this.dataset.idx);
-  if (dragSrcType !== targetType || dragSrcIdx === targetIdx) return;
-  const arr = data[dragSrcType];
-  const [moved] = arr.splice(dragSrcIdx, 1); arr.splice(targetIdx, 0, moved);
-  scheduleSave(); renderAll(); snack('Order updated', 'info');
+  const targetType=this.dataset.type, targetIdx=parseInt(this.dataset.idx);
+  if (dragSrcType!==targetType||dragSrcIdx===targetIdx) return;
+  const arr=data[dragSrcType]; const [moved]=arr.splice(dragSrcIdx,1); arr.splice(targetIdx,0,moved);
+  scheduleSave(); renderAll(); snack('Order updated','info');
 }
-function onDragEnd(e) {
-  this.classList.remove('dragging');
-  document.querySelectorAll('.habit-card').forEach(c => c.classList.remove('drag-over'));
-}
+function onDragEnd(e) { this.classList.remove('dragging'); document.querySelectorAll('.habit-card').forEach(c=>c.classList.remove('drag-over')); }
 
 /* ══ DETAIL PAGE ══ */
-function openDetail(type, idx) {
-  detailHabitType = type; detailHabitIdx = idx;
-  renderDetailPage();
-  document.getElementById('detail-page').classList.add('visible');
-  document.getElementById('detail-page').scrollTop = 0;
-}
+function openDetail(type, idx) { detailHabitType=type; detailHabitIdx=idx; renderDetailPage(); document.getElementById('detail-page').classList.add('visible'); document.getElementById('detail-page').scrollTop=0; }
 function closeDetail() { document.getElementById('detail-page').classList.remove('visible'); renderAll(); }
 function getDetailHabit() { return (data[detailHabitType]||[])[detailHabitIdx]; }
-function getPlanKey() { return `${detailHabitType}|${getDetailHabit()?.id}`; }
-function getNoteKey() { return `${detailHabitType}|${getDetailHabit()?.id}|notes`; }
+function getPlanKey()     { return `${detailHabitType}|${getDetailHabit()?.id}`; }
+function getNoteKey()     { return `${detailHabitType}|${getDetailHabit()?.id}|notes`; }
 
 function renderDetailPage() {
   const habit = getDetailHabit(); if (!habit) return;
   const hColor = habit.color || COLORS[0];
-  const emoji = sanitizeEmoji(habit.emoji) || '🌱';
-  const ct = detailHabitType === 'daily' ? 'd' : 'w';
+  const emoji  = sanitizeEmoji(habit.emoji) || '🌱';
+  const ct     = detailHabitType==='daily'?'d':'w';
   const streak = calcStreak(ct, habit.id);
-  const planKey = getPlanKey(); const noteKey = getNoteKey();
-  if (!data.plans) data.plans = {};
-  if (!data.notes) data.notes = {};
-  const tasks = data.plans[planKey] || [];
-  const notes = data.notes[noteKey] || '';
+  const planKey= getPlanKey(); const noteKey=getNoteKey();
+  if (!data.plans) data.plans={}; if (!data.notes) data.notes={};
+  const tasks  = data.plans[planKey] || [];
+  const notes  = data.notes[noteKey] || '';
   document.getElementById('detail-bar-title').textContent = habit.name;
-
-  const calDays = [];
-  const today = new Date(); today.setHours(0,0,0,0);
-  for (let i = 27; i >= 0; i--) { const d = new Date(today); d.setDate(today.getDate() - i); calDays.push(d); }
-
-  const calHtml = calDays.map(d => {
-    const dk = dateKey(d), checked = getCheck(ct, habit.id, dk);
-    const isFuture = dk > todayKey(), isToday = dk === todayKey();
+  const calDays=[];
+  const today=new Date(); today.setHours(0,0,0,0);
+  for (let i=27;i>=0;i--) { const d=new Date(today); d.setDate(today.getDate()-i); calDays.push(d); }
+  const calHtml=calDays.map(d => {
+    const dk=dateKey(d),checked=getCheck(ct,habit.id,dk);
+    const isFuture=dk>todayKey(),isToday=dk===todayKey();
     return `<div class="detail-cal-day${checked?' cal-done':''}${isToday?' cal-today':''}${isFuture?' future-cal':''}" style="--hc:${hColor}" ${!isFuture?`onclick="toggleDetailCalDay('${ct}','${habit.id}','${dk}',this)"`:''} title="${d.toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short'})}">${d.getDate()}</div>`;
   }).join('');
-
-  let weekStats = '';
-  for (let w = 0; w < 4; w++) {
-    const wDates = getWeekDates(-w);
-    const done = wDates.filter(d => getCheck(ct, habit.id, dateKey(d))).length;
-    const goal = habit.goal || (detailHabitType==='daily'?7:3);
-    const pct = Math.min(100, Math.round(done/goal*100));
-    const lbl = w===0?'This week':w===1?'Last week':`${w} weeks ago`;
-    weekStats += `<div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><div style="font-family:var(--font-label);font-size:.78rem;color:var(--md-on-surface-variant);min-width:90px">${lbl}</div><div style="flex:1;height:8px;background:var(--md-surface-container-highest);border-radius:99px;overflow:hidden"><div style="height:100%;background:${hColor};border-radius:99px;width:${pct}%;transition:width .4s"></div></div><div style="font-family:var(--font-label);font-size:.78rem;font-weight:700;color:${hColor};min-width:40px;text-align:right">${done}/${goal}</div></div>`;
+  let weekStats='';
+  for (let w=0;w<4;w++) {
+    const wDates=getWeekDates(-w), done=wDates.filter(d=>getCheck(ct,habit.id,dateKey(d))).length;
+    const goal=habit.goal||(detailHabitType==='daily'?7:3), pct=Math.min(100,Math.round(done/goal*100));
+    const lbl=w===0?'This week':w===1?'Last week':`${w} weeks ago`;
+    weekStats+=`<div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><div style="font-family:var(--font-label);font-size:.78rem;color:var(--md-on-surface-variant);min-width:90px">${lbl}</div><div style="flex:1;height:8px;background:var(--md-surface-container-highest);border-radius:99px;overflow:hidden"><div style="height:100%;background:${hColor};border-radius:99px;width:${pct}%;transition:width .4s"></div></div><div style="font-family:var(--font-label);font-size:.78rem;font-weight:700;color:${hColor};min-width:40px;text-align:right">${done}/${goal}</div></div>`;
   }
-
-  const tasksHtml = tasks.length === 0
+  const tasksHtml=tasks.length===0
     ? `<div style="text-align:center;padding:16px;color:var(--md-on-surface-variant);font-size:.85rem">No tasks yet. Add one below.</div>`
-    : tasks.map((t,i) => `<div class="plan-task"><div class="plan-task-check${t.done?' done':''}" style="--hc:${hColor}" onclick="toggleTask('${planKey}',${i})">${t.done?'check':''}</div><div style="flex:1"><div class="plan-task-text${t.done?' done-text':''}">${escHtml(t.text)}</div></div>${t.priority?`<span class="plan-task-priority priority-${t.priority}">${t.priority}</span>`:''}<button class="plan-task-del" onclick="deleteTask('${planKey}',${i})">delete</button></div>`).join('');
-
+    : tasks.map((t,i)=>`<div class="plan-task"><div class="plan-task-check${t.done?' done':''}" style="--hc:${hColor}" onclick="toggleTask('${planKey}',${i})">${t.done?'check':''}</div><div style="flex:1"><div class="plan-task-text${t.done?' done-text':''}">${escHtml(t.text)}</div></div>${t.priority?`<span class="plan-task-priority priority-${t.priority}">${t.priority}</span>`:''}<button class="plan-task-del" onclick="deleteTask('${planKey}',${i})">delete</button></div>`).join('');
   document.getElementById('detail-content').innerHTML = `
     <div class="detail-edit-form" id="detail-edit-form">
       <div class="detail-edit-grid">
@@ -1469,7 +1293,7 @@ function renderDetailPage() {
       <div class="detail-cal-grid">${calHtml}</div>
     </div>
     <div class="detail-section">
-      <div class="detail-section-title"><i class="detail-section-icon">checklist</i> Task Planner<span style="font-family:var(--font-body);font-size:.8rem;font-weight:400;color:var(--md-on-surface-variant);margin-left:4px">— splits, routines, steps</span></div>
+      <div class="detail-section-title"><i class="detail-section-icon">checklist</i> Task Planner</div>
       <div class="plan-tasks" id="plan-tasks-list">${tasksHtml}</div>
       <div class="add-task-row">
         <input class="add-task-input" type="text" id="new-task-input" placeholder="Add a task or step…" onkeydown="if(event.key==='Enter')addTask('${planKey}')" />
@@ -1482,303 +1306,285 @@ function renderDetailPage() {
       <textarea class="detail-notes-textarea" id="detail-notes" placeholder="Add notes, workout splits, plans…" onchange="saveNotes('${noteKey}',this.value)">${escHtml(notes)}</textarea>
     </div>`;
 }
-
 function openDetailEdit() { document.getElementById('detail-edit-form').classList.add('visible'); document.getElementById('detail-edit-form').scrollIntoView({behavior:'smooth'}); }
 function closeDetailEdit() { document.getElementById('detail-edit-form').classList.remove('visible'); }
-
-let detailEditColor = null;
-function pickDetailColor(c, el) {
-  detailEditColor = c;
-  document.querySelectorAll('#detail-color-row .color-swatch').forEach(s => s.classList.remove('selected'));
-  el.classList.add('selected');
-}
-
+let detailEditColor=null;
+function pickDetailColor(c,el) { detailEditColor=c; document.querySelectorAll('#detail-color-row .color-swatch').forEach(s=>s.classList.remove('selected')); el.classList.add('selected'); }
 function saveDetailEdit() {
-  const habit = getDetailHabit(); if (!habit) return;
-  const name = document.getElementById('detail-edit-name').value.trim();
+  const habit=getDetailHabit(); if (!habit) return;
+  const name=document.getElementById('detail-edit-name').value.trim();
   if (!name) { snack('Name cannot be empty','err'); return; }
-  habit.name  = name;
-  habit.emoji = document.getElementById('detail-edit-emoji').value.trim() || habit.emoji;
-  habit.desc  = document.getElementById('detail-edit-desc').value.trim();
-  habit.goal  = Math.max(1, parseInt(document.getElementById('detail-edit-goal').value) || 7);
-  if (detailEditColor) habit.color = detailEditColor;
-  detailEditColor = null;
-  scheduleSave(); renderDetailPage(); snack('Changes saved!', 'ok');
+  habit.name=name; habit.emoji=document.getElementById('detail-edit-emoji').value.trim()||habit.emoji;
+  habit.desc=document.getElementById('detail-edit-desc').value.trim();
+  habit.goal=Math.max(1,parseInt(document.getElementById('detail-edit-goal').value)||7);
+  if (detailEditColor) habit.color=detailEditColor; detailEditColor=null;
+  scheduleSave(); renderDetailPage(); snack('Changes saved!','ok');
 }
-
 function deleteCurrentDetailHabit() {
-  const habit = getDetailHabit(); if (!habit) return;
+  const habit=getDetailHabit(); if (!habit) return;
   showConfirm(`Remove "${habit.name}"?`, 'All check data for this habit will be lost.', () => {
-    data[detailHabitType].splice(detailHabitIdx, 1);
-    scheduleSave(); closeDetail(); snack('Habit removed', 'info');
-    scheduleProfileUpdate();
+    data[detailHabitType].splice(detailHabitIdx,1); scheduleSave(); closeDetail(); snack('Habit removed','info');
   });
 }
-
-function toggleDetailCalDay(type, habitId, dk, el) {
-  const key = `${type}|${habitId}|${dk}`;
-  data.checks[key] = !data.checks[key];
-  el.classList.toggle('cal-done', data.checks[key]);
-  scheduleSave();
-}
+function toggleDetailCalDay(type,habitId,dk,el) { const key=`${type}|${habitId}|${dk}`; data.checks[key]=!data.checks[key]; el.classList.toggle('cal-done',data.checks[key]); scheduleSave(); }
 
 /* ── TASKS ── */
 function addTask(planKey) {
-  const inp = document.getElementById('new-task-input');
-  const text = inp.value.trim(); if (!text) { snack('Enter a task first','err'); return; }
-  const priority = document.getElementById('new-task-priority').value;
-  if (!data.plans) data.plans = {};
-  if (!data.plans[planKey]) data.plans[planKey] = [];
-  data.plans[planKey].push({text, done:false, priority, id:Date.now().toString(36)});
-  inp.value = ''; scheduleSave();
-  renderTaskList(planKey, getDetailHabit()?.color || COLORS[0]);
-  snack('Task added','ok');
+  const inp=document.getElementById('new-task-input'); const text=inp.value.trim(); if (!text) { snack('Enter a task first','err'); return; }
+  const priority=document.getElementById('new-task-priority').value;
+  if (!data.plans) data.plans={}; if (!data.plans[planKey]) data.plans[planKey]=[];
+  data.plans[planKey].push({text,done:false,priority,id:Date.now().toString(36)});
+  inp.value=''; scheduleSave(); renderTaskList(planKey,getDetailHabit()?.color||COLORS[0]); snack('Task added','ok');
 }
-function toggleTask(planKey, idx) {
-  if (!data.plans?.[planKey]) return;
-  data.plans[planKey][idx].done = !data.plans[planKey][idx].done;
-  scheduleSave(); renderTaskList(planKey, getDetailHabit()?.color || COLORS[0]);
+function toggleTask(planKey,idx) { if (!data.plans?.[planKey]) return; data.plans[planKey][idx].done=!data.plans[planKey][idx].done; scheduleSave(); renderTaskList(planKey,getDetailHabit()?.color||COLORS[0]); }
+function deleteTask(planKey,idx) { if (!data.plans?.[planKey]) return; data.plans[planKey].splice(idx,1); scheduleSave(); renderTaskList(planKey,getDetailHabit()?.color||COLORS[0]); snack('Task removed','info'); }
+function renderTaskList(planKey,hColor) {
+  const tasks=(data.plans||{})[planKey]||[]; const el=document.getElementById('plan-tasks-list'); if (!el) return;
+  if (!tasks.length) { el.innerHTML=`<div style="text-align:center;padding:16px;color:var(--md-on-surface-variant);font-size:.85rem">No tasks yet.</div>`; return; }
+  el.innerHTML=tasks.map((t,i)=>`<div class="plan-task"><div class="plan-task-check${t.done?' done':''}" style="--hc:${hColor}" onclick="toggleTask('${planKey}',${i})">${t.done?'check':''}</div><div style="flex:1"><div class="plan-task-text${t.done?' done-text':''}">${escHtml(t.text)}</div></div>${t.priority?`<span class="plan-task-priority priority-${t.priority}">${t.priority}</span>`:''}<button class="plan-task-del" onclick="deleteTask('${planKey}',${i})">delete</button></div>`).join('');
 }
-function deleteTask(planKey, idx) {
-  if (!data.plans?.[planKey]) return;
-  data.plans[planKey].splice(idx,1);
-  scheduleSave(); renderTaskList(planKey, getDetailHabit()?.color || COLORS[0]);
-  snack('Task removed','info');
-}
-function renderTaskList(planKey, hColor) {
-  const tasks = (data.plans||{})[planKey] || [];
-  const el = document.getElementById('plan-tasks-list'); if (!el) return;
-  if (!tasks.length) { el.innerHTML = `<div style="text-align:center;padding:16px;color:var(--md-on-surface-variant);font-size:.85rem">No tasks yet.</div>`; return; }
-  el.innerHTML = tasks.map((t,i) => `<div class="plan-task"><div class="plan-task-check${t.done?' done':''}" style="--hc:${hColor}" onclick="toggleTask('${planKey}',${i})">${t.done?'check':''}</div><div style="flex:1"><div class="plan-task-text${t.done?' done-text':''}">${escHtml(t.text)}</div></div>${t.priority?`<span class="plan-task-priority priority-${t.priority}">${t.priority}</span>`:''}<button class="plan-task-del" onclick="deleteTask('${planKey}',${i})">delete</button></div>`).join('');
-}
-function saveNotes(noteKey, value) {
-  if (!data.notes) data.notes = {};
-  data.notes[noteKey] = value; scheduleSave();
-}
+function saveNotes(noteKey,value) { if (!data.notes) data.notes={}; data.notes[noteKey]=value; scheduleSave(); }
 
 /* ══════════════════════════════════════════════
    GITHUB PERSONAL SYNC  (user's own private repo)
    ══════════════════════════════════════════════ */
-function ghUrl() { return `https://api.github.com/repos/${config.owner}/${config.repo}/contents/${config.path}`; }
+function ghUrl()     { return `https://api.github.com/repos/${config.owner}/${config.repo}/contents/${config.path}`; }
 function ghHeaders() { return {'Authorization':`token ${config.token}`,'Accept':'application/vnd.github.v3+json','Content-Type':'application/json'}; }
 
 async function loadFromGitHub() {
   setSyncState('busy','Loading…');
   try {
     const res = await fetch(ghUrl(), {headers:ghHeaders()});
-    if (res.status === 404) { data = {daily:[],weekly:[],checks:{},plans:{},notes:{}}; setSyncState('ok','Ready'); renderAll(); _onDataLoaded(); return; }
+    if (res.status===404) { data={daily:[],weekly:[],checks:{},plans:{},notes:{}}; setSyncState('ok','Ready'); renderAll(); return; }
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const json = await res.json();
-    ghFileSha = json.sha;
-    data = JSON.parse(atob(json.content.replace(/\n/g,'')));
-    if (!data.checks) data.checks = {};
-    if (!data.plans)  data.plans  = {};
-    if (!data.notes)  data.notes  = {};
+    const json  = await res.json();
+    ghFileSha   = json.sha;
+    data        = JSON.parse(atob(json.content.replace(/\n/g,'')));
+    if (!data.checks) data.checks={};
+    if (!data.plans)  data.plans={};
+    if (!data.notes)  data.notes={};
     setSyncState('ok','Synced'); renderAll();
     snack('Data loaded from GitHub','ok');
   } catch(e) {
     setSyncState('err','Error'); snack('Load failed: '+e.message,'err'); loadFromLocal();
   }
-  _onDataLoaded();
 }
 
+// Syncs habit data only (no community profile) — called from the top-bar chip
 async function syncNow() {
   if (config.localOnly) { saveToLocal(); return; }
   setSyncState('busy','Saving…');
   document.getElementById('sync-chip').style.pointerEvents = 'none';
   try {
-    const content = btoa(unescape(encodeURIComponent(JSON.stringify(data, null, 2))));
-    const body = {message:`Ripple update ${todayKey()}`, content, ...(ghFileSha?{sha:ghFileSha}:{})};
-    const res = await fetch(ghUrl(), {method:'PUT', headers:ghHeaders(), body:JSON.stringify(body)});
-    if (res.status===409||res.status===422) { snack('Conflict — reloading…','info'); await loadFromGitHub(); return; }
-    if (!res.ok) { const e = await res.json(); throw new Error(e.message||res.statusText); }
-    const json = await res.json(); ghFileSha = json.content.sha;
+    const sha = await ghWrite(data);
+    ghFileSha  = sha;
     setSyncState('ok','Synced '+new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'}));
     snack('Synced to GitHub ✓','ok');
-  } catch(e) { setSyncState('err','Failed'); snack('Sync failed: '+e.message,'err'); }
-  finally { document.getElementById('sync-chip').style.pointerEvents = ''; }
+  } catch(e) {
+    if (e.message.includes('409') || e.message.includes('422')) {
+      snack('Conflict — reloading…','info'); await loadFromGitHub(); return;
+    }
+    setSyncState('err','Failed'); snack('Sync failed: '+e.message,'err');
+  } finally {
+    document.getElementById('sync-chip').style.pointerEvents = '';
+  }
+}
+
+// Core write helper — used by both syncNow and syncMyProfile
+async function ghWrite(payload) {
+  // Always fetch current sha first to avoid 409s
+  if (!ghFileSha) {
+    try {
+      const r = await fetch(ghUrl(), {headers:ghHeaders()});
+      if (r.ok) { const m = await r.json(); ghFileSha = m.sha; }
+    } catch {}
+  }
+  const body = {
+    message: `Ripple update ${todayKey()}`,
+    content: btoa(unescape(encodeURIComponent(JSON.stringify(payload, null, 2)))),
+    ...(ghFileSha ? {sha: ghFileSha} : {})
+  };
+  const res = await fetch(ghUrl(), {method:'PUT', headers:ghHeaders(), body:JSON.stringify(body)});
+  if (!res.ok) { const e=await res.json().catch(()=>({})); throw new Error(e.message||`HTTP ${res.status}`); }
+  const json = await res.json();
+  return json.content.sha;
 }
 
 function setSyncState(state, label) {
-  document.getElementById('sync-dot').className = 'sync-indicator ' + state;
+  document.getElementById('sync-dot').className   = 'sync-indicator ' + state;
   document.getElementById('sync-label').textContent = label;
 }
 
 function loadFromLocal() {
   const s = localStorage.getItem('ripple_data');
-  if (s) {
-    data = JSON.parse(s);
-    if (!data.checks) data.checks = {};
-    if (!data.plans)  data.plans  = {};
-    if (!data.notes)  data.notes  = {};
-  } else {
-    data = {daily:[], weekly:[], checks:{}, plans:{}, notes:{}};
-  }
+  if (s) { data=JSON.parse(s); if (!data.checks) data.checks={}; if (!data.plans) data.plans={}; if (!data.notes) data.notes={}; }
+  else { data={daily:[],weekly:[],checks:{},plans:{},notes:{}}; }
   renderAll();
-  _onDataLoaded();
 }
-
-function saveToLocal() {
-  localStorage.setItem('ripple_data', JSON.stringify(data));
-  setSyncState('ok','Saved'); snack('Saved locally','ok');
-}
-
+function saveToLocal() { localStorage.setItem('ripple_data',JSON.stringify(data)); setSyncState('ok','Saved'); snack('Saved locally','ok'); }
 function scheduleSave() {
   clearTimeout(dirtyTimer);
   dirtyTimer = setTimeout(() => {
     if (config.localOnly) saveToLocal();
-    else setSyncState('busy','Unsaved…');
+    else { setSyncState('busy','Unsaved…'); }
   }, 600);
-}
-
-function _onDataLoaded() {
-  // Queue community profile update after data is ready
-  scheduleProfileUpdate();
 }
 
 /* ══════════════════════════════════════════════
    COMMUNITY SYSTEM
-   ——————————————————————————————————————————————
-   READ  → raw.githubusercontent.com  (public, no auth)
-   WRITE → GitHub Actions workflow_dispatch
-           The workflow runs with a COMMUNITY_TOKEN
-           secret that NEVER reaches the browser.
-
-   Profile payload (no private data):
-   {
-     id:           string,   // stable uid
-     type:         'github'|'local',
-     username:     string|null,  // GH username only
-     repo:         string|null,  // public repo name only
-     joinedAt:     ISO string,
-     lastSeen:     ISO string,
-     dailyHabits:  number,
-     weeklyHabits: number,
-     joinDow:      0-6  (0=Sun)
-   }
+   ══════════════════════════════════════════════
+   HOW IT WORKS:
+   1. READ  → raw.githubusercontent.com (public, no auth needed)
+   2. WRITE → user clicks "Sync My Profile" which:
+        a. Writes _communityProfile block into their own
+           ripple-data.json via their own personal token.
+        b. On FIRST sync ever: fires a `register-user`
+           dispatch to ripple-community via REGISTRATION_TOKEN
+           (fine-grained PAT, Actions:write only on that repo).
+           The register-user.yml workflow adds them to
+           registered-users.json and triggers aggregation.
+        c. On subsequent syncs: fires a `refresh-community`
+           dispatch so the aggregator picks up new data fast.
+   3. Local users: can read the feed but never appear in it.
    ══════════════════════════════════════════════ */
 
-/** Build the current user's public profile (no secrets) */
-function buildMyProfile() {
-  const isGH = !config.localOnly;
-  const uid  = isGH
-    ? `gh_${config.owner}_${config.repo}`
-    : `local_${config._uid || localStorage.getItem('ripple_local_uid') || 'unknown'}`;
-  const existing = communityUsers.find(u => u.id === uid);
+function initCommunityPage() {
+  // Show/hide the right controls based on login mode
+  const isGitHub = !config.localOnly;
+  document.getElementById('sync-profile-btn').classList.toggle('visible', isGitHub);
+  document.getElementById('local-only-notice').classList.toggle('visible', !isGitHub);
+  loadCommunityData(false);
+}
+
+/** Build the safe public profile from the user's current data */
+function buildCommunityProfile() {
+  // Preserve joinedAt and joinDow from existing stored profile if available
+  const existing = (data._communityProfile) || {};
   return {
-    id:           uid,
-    type:         isGH ? 'github' : 'local',
-    username:     isGH ? config.owner : null,
-    repo:         isGH ? config.repo  : null,
-    joinedAt:     existing?.joinedAt || new Date().toISOString(),
+    id:           `gh_${config.owner}_${config.repo}`,
+    type:         'github',
+    username:     config.owner,
+    repo:         config.repo,
+    joinedAt:     existing.joinedAt  || new Date().toISOString(),
     lastSeen:     new Date().toISOString(),
-    dailyHabits:  (data.daily||[]).length,
-    weeklyHabits: (data.weekly||[]).length,
-    joinDow:      existing?.joinDow ?? new Date().getDay()
+    dailyHabits:  (data.daily  || []).length,
+    weeklyHabits: (data.weekly || []).length,
+    currentStreak: Math.max(0, ...(data.daily||[]).map(h => calcStreak('d', h.id)), 0),
+    joinDow:      existing.joinDow ?? new Date().getDay(),
   };
 }
 
-/** Load community-data.json from the public repo (no auth needed) */
+/**
+ * "Sync My Profile" — the ONLY way a GitHub user's data reaches the community.
+ * Steps:
+ *   1. Build community profile (public fields only).
+ *   2. Write it into the user's own ripple-data.json under _communityProfile.
+ *   3a. If never registered: dispatch `register-user` → workflow adds them to
+ *       registered-users.json and triggers aggregation immediately.
+ *   3b. If already registered: dispatch `refresh-community` → aggregation runs.
+ */
+async function syncMyProfile() {
+  if (config.localOnly) return; // should never be called, but guard anyway
+
+  const btn = document.getElementById('sync-profile-btn');
+  btn.disabled = true;
+  btn.innerHTML = '<i class="icon icon-sm">hourglass_top</i> Syncing…';
+  setCommunitySync('busy', 'Syncing your profile…');
+
+  try {
+    // 1. Build profile
+    const profile = buildCommunityProfile();
+
+    // 2. Write to personal repo (includes _communityProfile key)
+    const payload = { ...data, _communityProfile: profile };
+    const sha = await ghWrite(payload);
+    ghFileSha = sha;
+    // Keep local data in sync too
+    data._communityProfile = profile;
+    saveToLocal();
+
+    // 3. Register or refresh
+    const alreadyRegistered = localStorage.getItem('ripple_community_registered');
+    if (!alreadyRegistered) {
+      await dispatchToCommnunity('register-user', {
+        owner: config.owner,
+        repo:  config.repo,
+        path:  config.path || 'ripple-data.json',
+      });
+      localStorage.setItem('ripple_community_registered', '1');
+      snack('Joined the community! 🎉 You\'ll appear shortly.', 'ok');
+    } else {
+      await dispatchToCommnunity('refresh-community', {});
+      snack('Profile synced ✓', 'ok');
+    }
+
+    setCommunitySync('ok', 'Profile synced · refreshing feed…');
+    // Reload community feed after aggregation (~40s)
+    setTimeout(() => loadCommunityData(true), 42000);
+
+  } catch(e) {
+    setCommunitySync('err', 'Sync failed');
+    snack('Profile sync failed: ' + e.message, 'err');
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = '<i class="icon icon-sm">upload</i> Sync My Profile';
+  }
+}
+
+/** Fire a repository_dispatch event to ripple-community */
+async function dispatchToCommnunity(eventType, payload) {
+  const res = await fetch(COMMUNITY_DISPATCH_URL, {
+    method: 'POST',
+    headers: {
+      'Authorization':        `Bearer ${REGISTRATION_TOKEN}`,
+      'Accept':               'application/vnd.github+json',
+      'Content-Type':         'application/json',
+      'X-GitHub-Api-Version': '2022-11-28',
+    },
+    body: JSON.stringify({
+      event_type:     eventType,
+      client_payload: payload,
+    }),
+  });
+  // 204 = success, 404 = repo not found / not configured
+  if (res.status !== 204) {
+    const body = await res.json().catch(() => ({}));
+    throw new Error(body.message || `Dispatch returned HTTP ${res.status}`);
+  }
+}
+
+/** Load community-data.json from the public community repo */
 async function loadCommunityData(forceRefresh = false) {
   setCommunitySync('busy', 'Loading community…');
   try {
     const url = COMMUNITY_RAW_URL + (forceRefresh ? `?t=${Date.now()}` : '');
-    const res = await fetch(url, {cache: forceRefresh ? 'no-store' : 'default'});
+    const res = await fetch(url, { cache: forceRefresh ? 'no-store' : 'default' });
     if (res.status === 404) {
       communityUsers = [];
     } else if (!res.ok) {
       throw new Error(`HTTP ${res.status}`);
     } else {
-      const json = await res.json();
+      const json     = await res.json();
       communityUsers = Array.isArray(json.users) ? json.users : [];
     }
-    setCommunitySync('ok', `${communityUsers.length} members · updated ${timeAgo(new Date())}`);
+    const upd = communityUsers.length
+      ? `${communityUsers.length} members`
+      : 'No members yet';
+    setCommunitySync('ok', upd);
     renderCommunityPage();
   } catch(e) {
-    setCommunitySync('err', 'Failed to load community data');
-    snack('Community load failed: '+e.message,'err');
-    // Fall back to empty list
+    setCommunitySync('err', 'Failed to load');
+    snack('Community load failed: ' + e.message, 'err');
     communityUsers = [];
     renderCommunityPage();
-  }
-}
-
-/** Push my profile update via GitHub Actions dispatch (SECURE — no token in browser) */
-let profileUpdateTimer = null;
-function scheduleProfileUpdate() {
-  clearTimeout(profileUpdateTimer);
-  profileUpdateTimer = setTimeout(pushProfileUpdate, 5000);
-}
-
-async function pushProfileUpdate() {
-  // We dispatch the workflow_dispatch event.
-  // The workflow runs server-side with its own COMMUNITY_TOKEN secret.
-  // We only pass PUBLIC non-sensitive data as inputs.
-  if (COMMUNITY_OWNER === 'YOUR_ORG_OR_USERNAME') return; // not configured yet
-
-  const profile = buildMyProfile();
-
-  try {
-    // workflow_dispatch on a public repo requires the repo's Actions to be enabled.
-    // The dispatch itself requires authentication — BUT we use a fine-grained
-    // PAT with ONLY actions:write on the community repo, stored as a GitHub secret.
-    //
-    // Since we cannot store a token here, we use an UNAUTHENTICATED approach:
-    // we write to a "submissions" branch via a dedicated public endpoint (see README).
-    //
-    // IMPLEMENTATION CHOICE:
-    // We write a "pending" entry to localStorage, and when the user's own GitHub
-    // token is available, we include the update as part of that user's sync.
-    // The GitHub Actions job then aggregates all user data on push.
-    //
-    // For now, store the profile in a "pending submissions" key so the Actions
-    // workflow can pick it up via a separate PR-based flow.
-    localStorage.setItem('ripple_pending_profile', JSON.stringify(profile));
-
-    // If user has a GH token AND the community repo is set up,
-    // write their profile to their own ripple-data.json's metadata section.
-    // The Actions workflow reads all users' repos and aggregates (see workflow file).
-    if (!config.localOnly && config.token) {
-      await writeProfileToPersonalRepo(profile);
-    }
-  } catch(e) {
-    // Silent — community update is best-effort
-    console.warn('Community profile update failed:', e.message);
-  }
-}
-
-/** Writes the user's public profile into their personal ripple-data.json
-    under a `_communityProfile` key. The Actions workflow reads this. */
-async function writeProfileToPersonalRepo(profile) {
-  if (!config.token || !config.owner || !config.repo) return;
-
-  // First load current file to get sha
-  let sha = ghFileSha;
-  let currentData = {...data};
-
-  // Attach profile (public only) to the data blob
-  currentData._communityProfile = profile;
-
-  const content = btoa(unescape(encodeURIComponent(JSON.stringify(currentData, null, 2))));
-  const body = {
-    message: `Ripple community profile update ${todayKey()}`,
-    content,
-    ...(sha ? {sha} : {})
-  };
-  const res = await fetch(ghUrl(), {method:'PUT', headers:ghHeaders(), body:JSON.stringify(body)});
-  if (res.ok) {
-    const json = await res.json();
-    ghFileSha = json.content.sha;
-    // Update local data too
-    data._communityProfile = profile;
   }
 }
 
 function setCommunitySync(state, label) {
   const dot = document.getElementById('community-sync-dot');
   const lbl = document.getElementById('community-sync-label');
-  if (dot) dot.className = 'sync-indicator ' + state;
-  if (lbl) lbl.textContent = label;
+  if (dot) dot.className    = 'sync-indicator ' + state;
+  if (lbl) lbl.textContent  = label;
 }
 
 /* ══ COMMUNITY PAGE RENDER ══ */
@@ -1788,7 +1594,6 @@ function renderCommunityPage() {
   const locUsers = all.filter(u => u.type === 'local');
   const totalH   = all.reduce((s,u) => s + (u.dailyHabits||0) + (u.weeklyHabits||0), 0);
 
-  // Header stats
   document.getElementById('cs-total').textContent  = all.length;
   document.getElementById('cs-github').textContent = ghUsers.length;
   document.getElementById('cs-local').textContent  = locUsers.length;
@@ -1796,32 +1601,25 @@ function renderCommunityPage() {
 
   // Donut chart
   const total  = all.length || 1;
-  const circ   = 2 * Math.PI * 38; // ≈ 238.76
+  const circ   = 2 * Math.PI * 38;
   const ghFrac = ghUsers.length / total;
   const lFrac  = locUsers.length / total;
-  const ghDash = circ * ghFrac;
-  const lDash  = circ * lFrac;
-  document.getElementById('donut-github').setAttribute('stroke-dasharray', `${ghDash} ${circ - ghDash}`);
-  // Offset local arc to start after github arc
+  document.getElementById('donut-github').setAttribute('stroke-dasharray', `${circ*ghFrac} ${circ*(1-ghFrac)}`);
   const lRotate = -90 + ghFrac * 360;
-  document.getElementById('donut-local').setAttribute('stroke-dasharray', `${lDash} ${circ - lDash}`);
+  document.getElementById('donut-local').setAttribute('stroke-dasharray', `${circ*lFrac} ${circ*(1-lFrac)}`);
   document.getElementById('donut-local').setAttribute('transform', `rotate(${lRotate} 50 50)`);
   document.getElementById('legend-github').textContent = `${ghUsers.length} · ${Math.round(ghFrac*100)}%`;
   document.getElementById('legend-local').textContent  = `${locUsers.length} · ${Math.round(lFrac*100)}%`;
 
-  // Bar chart: signups by day of week (0=Sun…6=Sat)
+  // Bar chart
   const dowLbls   = ['Su','Mo','Tu','We','Th','Fr','Sa'];
   const dowCounts = Array(7).fill(0);
   all.forEach(u => { if (u.joinDow !== undefined) dowCounts[u.joinDow]++; });
   const maxDow = Math.max(...dowCounts, 1);
   document.getElementById('signup-bar').innerHTML = dowLbls.map((lbl,i) => {
     const pct = Math.round(dowCounts[i] / maxDow * 100);
-    const isWeekend = i === 0 || i === 6;
-    return `<div class="bar-item">
-      <div class="bar-label">${lbl}</div>
-      <div class="bar-track"><div class="bar-fill" style="width:${pct}%;background:${isWeekend?'var(--md-tertiary,#7D5260)':'var(--md-primary)'}"></div></div>
-      <div class="bar-count">${dowCounts[i]}</div>
-    </div>`;
+    const isWeekend = i===0||i===6;
+    return `<div class="bar-item"><div class="bar-label">${lbl}</div><div class="bar-track"><div class="bar-fill" style="width:${pct}%;background:${isWeekend?'var(--md-tertiary,#7D5260)':'var(--md-primary)'}"></div></div><div class="bar-count">${dowCounts[i]}</div></div>`;
   }).join('');
 
   renderUsersList();
@@ -1832,30 +1630,19 @@ function renderUsersList() {
   if (communityFilter !== 'all') filtered = filtered.filter(u => u.type === communityFilter);
   if (communitySearch) {
     const q = communitySearch.toLowerCase();
-    filtered = filtered.filter(u =>
-      (u.username||'').toLowerCase().includes(q) ||
-      (u.repo||'').toLowerCase().includes(q) ||
-      (u.id||'').toLowerCase().includes(q)
-    );
+    filtered = filtered.filter(u => (u.username||'').toLowerCase().includes(q) || (u.repo||'').toLowerCase().includes(q));
   }
-
   document.getElementById('users-badge').textContent = filtered.length;
-  const list = document.getElementById('users-list');
-  if (!list) return;
-
-  if (!filtered.length) {
-    list.innerHTML = `<div class="community-loading">No members match your search.</div>`;
-    return;
-  }
-
-  const avatarPalette = ['#6750A4','#006A6A','#8B0057','#7A5900','#1565C0','#2E7D32'];
+  const list = document.getElementById('users-list'); if (!list) return;
+  if (!filtered.length) { list.innerHTML=`<div class="community-loading">No members match your search.</div>`; return; }
+  const palette = ['#6750A4','#006A6A','#8B0057','#7A5900','#1565C0','#2E7D32'];
   list.innerHTML = filtered.map((u,i) => {
-    const isGH      = u.type === 'github';
+    const isGH        = u.type === 'github';
     const displayName = isGH ? u.username : `Local User #${(u.id||'').slice(-6)}`;
     const initials    = isGH ? (u.username||'?').slice(0,2).toUpperCase() : 'LO';
-    const avatarBg    = avatarPalette[i % avatarPalette.length];
+    const avatarBg    = palette[i % palette.length];
     const joinedDate  = u.joinedAt ? new Date(u.joinedAt).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}) : '—';
-    const lastSeenStr = u.lastSeen ? timeAgo(new Date(u.lastSeen)) : '—';
+    const lastSeen    = u.lastSeen ? timeAgo(new Date(u.lastSeen)) : '—';
     const habits      = (u.dailyHabits||0) + (u.weeklyHabits||0);
     const badge       = isGH
       ? `<span class="user-type-badge badge-github"> GitHub</span>`
@@ -1868,54 +1655,39 @@ function renderUsersList() {
       <div class="user-info">
         <div class="user-name">${escHtml(displayName)} ${badge}</div>
         <div class="user-meta">
-          ${isGH ? `<span><i class="icon icon-sm" style="font-style:normal;font-family:'Material Symbols Rounded'">folder</i> ${escHtml(u.repo||'—')}</span>` : '<span><i class="icon icon-sm" style="font-style:normal;font-family:\'Material Symbols Rounded\'">smartphone</i> Browser only</span>'}
-          <span><i class="icon icon-sm" style="font-style:normal;font-family:'Material Symbols Rounded'">schedule</i> ${escHtml(lastSeenStr)}</span>
+          ${isGH?`<span><i class="icon icon-sm" style="font-style:normal;font-family:'Material Symbols Rounded'">folder</i> ${escHtml(u.repo||'—')}</span>`:'<span><i class="icon icon-sm" style="font-style:normal;font-family:\'Material Symbols Rounded\'">smartphone</i> Browser only</span>'}
+          <span><i class="icon icon-sm" style="font-style:normal;font-family:'Material Symbols Rounded'">schedule</i> ${escHtml(lastSeen)}</span>
         </div>
       </div>
       <div class="user-stats">
         <div class="user-stat-item"><div class="user-stat-val">${habits}</div><div class="user-stat-lbl">Habits</div></div>
+        ${u.currentStreak>0?`<div class="user-stat-item"><div class="user-stat-val">🔥${u.currentStreak}</div><div class="user-stat-lbl">Streak</div></div>`:''}
       </div>
       <div class="user-joined">Joined<br>${joinedDate}</div>
     </div>`;
   }).join('');
 }
 
-function filterUsers(q) { communitySearch = q; renderUsersList(); }
-function setUserFilter(f, el) {
-  communityFilter = f;
-  document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
-  el.classList.add('active');
-  renderUsersList();
-}
-
+function filterUsers(q)     { communitySearch = q; renderUsersList(); }
+function setUserFilter(f,el){ communityFilter=f; document.querySelectorAll('.filter-chip').forEach(c=>c.classList.remove('active')); el.classList.add('active'); renderUsersList(); }
 function timeAgo(date) {
-  const s = Math.floor((new Date() - date) / 1000);
-  if (s < 60) return 'just now';
-  if (s < 3600) return `${Math.floor(s/60)}m ago`;
-  if (s < 86400) return `${Math.floor(s/3600)}h ago`;
+  const s=Math.floor((new Date()-date)/1000);
+  if (s<60) return 'just now';
+  if (s<3600) return `${Math.floor(s/60)}m ago`;
+  if (s<86400) return `${Math.floor(s/3600)}h ago`;
   return `${Math.floor(s/86400)}d ago`;
 }
 
 /* ══ UTILS ══ */
-function escHtml(str) {
-  if (!str) return '';
-  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-}
-
+function escHtml(str) { if (!str) return ''; return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 function snack(msg, type='info') {
-  const el = document.getElementById('snackbar');
-  const icons = {ok:'check_circle', err:'error', info:'info'};
-  document.getElementById('sb-icon').textContent = icons[type]||'info';
-  document.getElementById('sb-icon').className = 'snackbar-icon ' + type;
-  document.getElementById('sb-msg').textContent = msg;
-  el.classList.add('show');
-  clearTimeout(el._t);
-  el._t = setTimeout(() => el.classList.remove('show'), 3000);
+  const el=document.getElementById('snackbar'); const icons={ok:'check_circle',err:'error',info:'info'};
+  document.getElementById('sb-icon').textContent=icons[type]||'info';
+  document.getElementById('sb-icon').className='snackbar-icon '+type;
+  document.getElementById('sb-msg').textContent=msg;
+  el.classList.add('show'); clearTimeout(el._t); el._t=setTimeout(()=>el.classList.remove('show'),3000);
 }
-
-window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
-  if (prefs.theme === 'auto') applyTheme('auto');
-});
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => { if (prefs.theme==='auto') applyTheme('auto'); });
 </script>
 </body>
 </html>
