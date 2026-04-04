@@ -1536,7 +1536,7 @@ async function dispatchToCommnunity(eventType, payload) {
   const res = await fetch(COMMUNITY_DISPATCH_URL, {
     method: 'POST',
     headers: {
-      'Authorization':        `Bearer ${REGISTRATION_TOKEN}`,
+      'Authorization':        `token ${REGISTRATION_TOKEN}`,
       'Accept':               'application/vnd.github+json',
       'Content-Type':         'application/json',
       'X-GitHub-Api-Version': '2022-11-28',
