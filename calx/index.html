@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" data-scheme="green">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="CalorieLens — AI-powered calorie & macro tracker">
+  <meta name="theme-color" content="#16a367">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+  <title>CalorieLens</title>
+  <link rel="stylesheet" href="style.css">
+
+  <!-- PWA manifest inline -->
+  <link rel="manifest" href="manifest.json">
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════
+     SETUP WIZARD (shown on first launch)
+════════════════════════════════════════════════════════ -->
+<div id="setup-wizard" style="display:none">
+
+  <div class="wizard-header">
+    <div class="wizard-progress-wrap">
+      <div class="wizard-progress-bar" id="wizard-progress" style="width:25%"></div>
+    </div>
+    <span id="wizard-step-label">Step 1 of 4</span>
+  </div>
+
+  <div class="wizard-body">
+    <div id="wizard-content">
+      <!-- Dynamically rendered by SetupWizard.renderStep() -->
+    </div>
+  </div>
+
+  <div class="wizard-footer">
+    <button class="btn-outline" id="wizard-back" style="visibility:hidden">Back</button>
+    <button class="btn-primary flex-1" id="wizard-next">Continue</button>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     MAIN APP SHELL (shown after setup)
+════════════════════════════════════════════════════════ -->
+<div id="app-shell" style="display:none">
+
+  <!-- Page Content -->
+  <main id="main-content" role="main" aria-live="polite">
+    <!-- Dynamically rendered by UI.renderPage() -->
+  </main>
+
+  <!-- Bottom Navigation Bar -->
+  <nav class="nav-bar" role="navigation" aria-label="Main navigation">
+
+    <button class="nav-item" data-page="dashboard" onclick="App.navigate('dashboard')" aria-label="Dashboard">
+      <span class="nav-icon">🏠</span>
+      <span class="nav-label">Home</span>
+    </button>
+
+    <button class="nav-item" data-page="scan" onclick="App.navigate('scan')" aria-label="Scan food">
+      <span class="nav-icon">📷</span>
+      <span class="nav-label">Scan</span>
+    </button>
+
+    <button class="nav-item" data-page="log" onclick="App.navigate('log')" aria-label="Food log">
+      <span class="nav-icon">📋</span>
+      <span class="nav-label">Log</span>
+    </button>
+
+    <button class="nav-item" data-page="progress" onclick="App.navigate('progress')" aria-label="Progress">
+      <span class="nav-icon">📊</span>
+      <span class="nav-label">Progress</span>
+    </button>
+
+    <button class="nav-item" data-page="settings" onclick="App.navigate('settings')" aria-label="Settings">
+      <span class="nav-icon">⚙️</span>
+      <span class="nav-label">Settings</span>
+    </button>
+
+  </nav>
+
+</div>
+
+<!-- Toast Notification Container -->
+<div id="toast-container" role="alert" aria-live="polite"></div>
+
+<!-- ═══════════════════════════════════════════════════════
+     SCRIPTS — Order matters: storage → api → ui → main
+════════════════════════════════════════════════════════ -->
+<script src="storage.js"></script>
+<script src="api.js"></script>
+<script src="ui.js"></script>
+<script src="main.js"></script>
+
+</body>
+</html>
