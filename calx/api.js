@@ -36,7 +36,7 @@ All macros are in grams. Calories are in kcal. Be realistic with portion sizes v
 
   // ─── OpenAI ────────────────────────────────────────────────────────────────
 
-  async function callOpenAI(apiKey, base64Image, mimeType) {
+  async function callOpenAI(apiKey, base64Image, mimeType, userPrompt) {
     const response = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
       headers: {
@@ -51,7 +51,7 @@ All macros are in grams. Calories are in kcal. Be realistic with portion sizes v
           {
             role: 'user',
             content: [
-              { type: 'text', text: 'Analyze this food image and provide nutritional estimates.' },
+              { type: 'text', text: userPrompt },
               {
                 type: 'image_url',
                 image_url: { url: `data:${mimeType};base64,${base64Image}`, detail: 'low' }
@@ -74,7 +74,7 @@ All macros are in grams. Calories are in kcal. Be realistic with portion sizes v
 
   // ─── Google Gemini ─────────────────────────────────────────────────────────
 
-  async function callGemini(apiKey, base64Image, mimeType) {
+  async function callGemini(apiKey, base64Image, mimeType, userPrompt) {
     const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
     const response = await fetch(url, {
       method: 'POST',
@@ -82,7 +82,7 @@ All macros are in grams. Calories are in kcal. Be realistic with portion sizes v
       body: JSON.stringify({
         contents: [{
           parts: [
-            { text: SYSTEM_PROMPT + '\n\nAnalyze this food image and provide nutritional estimates.' },
+            { text: SYSTEM_PROMPT + '\n\n' + userPrompt },
             { inline_data: { mime_type: mimeType, data: base64Image } }
           ]
         }],
@@ -103,7 +103,7 @@ All macros are in grams. Calories are in kcal. Be realistic with portion sizes v
   // ─── Custom Endpoint (OpenAI-compatible format) ────────────────────────────
   // Works with OpenRouter, Together AI, Groq, local Ollama, etc.
 
-  async function callCustom(settings, base64Image, mimeType) {
+  async function callCustom(settings, base64Image, mimeType, userPrompt) {
     const model = settings.customModel || 'openai/gpt-4o'; // sensible default for OpenRouter
 
     const response = await fetch(settings.customEndpoint, {
@@ -123,7 +123,7 @@ All macros are in grams. Calories are in kcal. Be realistic with portion sizes v
           {
             role: 'user',
             content: [
-              { type: 'text', text: 'Analyze this food image and provide nutritional estimates.' },
+              { type: 'text', text: userPrompt },
               {
                 type: 'image_url',
                 image_url: { url: `data:${mimeType};base64,${base64Image}` }
@@ -173,20 +173,23 @@ All macros are in grams. Calories are in kcal. Be realistic with portion sizes v
 
   // ─── Main Scan Entry Point ─────────────────────────────────────────────────
 
-  async function scanFood(file) {
+  async function scanFood(file, context = '') {
     const settings = Storage.getApiSettings();
 
     if (!settings.apiKey && settings.provider !== 'custom') {
       throw new Error('No API key configured. Please add your API key in Settings.');
     }
 
-    const mimeType = file.type || 'image/jpeg';
+    const mimeType    = file.type || 'image/jpeg';
     const base64Image = await fileToBase64(file);
+    const userPrompt  = context
+      ? `Analyse this food image. Additional context from the user: "${context}"`
+      : 'Analyse this food image and provide nutritional estimates.';
 
     switch (settings.provider) {
-      case 'openai':  return callOpenAI(settings.apiKey, base64Image, mimeType);
-      case 'gemini':  return callGemini(settings.apiKey, base64Image, mimeType);
-      case 'custom':  return callCustom(settings, base64Image, mimeType);
+      case 'openai':  return callOpenAI(settings.apiKey, base64Image, mimeType, userPrompt);
+      case 'gemini':  return callGemini(settings.apiKey, base64Image, mimeType, userPrompt);
+      case 'custom':  return callCustom(settings, base64Image, mimeType, userPrompt);
       default:        throw new Error(`Unknown provider: ${settings.provider}`);
     }
   }
