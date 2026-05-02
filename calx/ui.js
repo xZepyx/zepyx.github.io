@@ -215,17 +215,16 @@ const UI = {
   },
 
   // ══════════════════════════════════════════════════════════
-  // SCAN PAGE
+  // SCAN PAGE — tabs: Image | Describe | Manual
   // ══════════════════════════════════════════════════════════
   renderScan(container) {
-    const api    = Storage.getApiSettings();
-    const hasKey = !!api.apiKey;
+    const hasKey = !!Storage.getApiSettings().apiKey;
 
     container.innerHTML = `
       <div>
         <div class="page-header">
           <h2 class="page-title">Add Food</h2>
-          <p class="page-subtitle">Scan a photo or enter manually</p>
+          <p class="page-subtitle">Scan, describe, or enter manually</p>
         </div>
 
         ${!hasKey ? `
@@ -234,57 +233,105 @@ const UI = {
             <span>No API key set. <button class="btn-text btn-sm" onclick="App.navigate('settings')">Add in Settings →</button></span>
           </div>` : ''}
 
-        <!-- Image Scan card -->
-        <div class="card">
-          <h3 class="card-title">
-            <span class="material-symbols-rounded icon-sm">photo_camera</span> AI Image Scan
-          </h3>
-
-          <div class="drop-zone" id="drop-zone" onclick="document.getElementById('food-img-input').click()">
-            <div class="drop-content" id="drop-content">
-              <div class="drop-icon-wrap">
-                <span class="material-symbols-rounded icon-lg">upload_file</span>
-              </div>
-              <p>Tap to upload or take a photo</p>
-              <small>JPG, PNG, WEBP supported</small>
-            </div>
-          </div>
-          <input type="file" id="food-img-input" accept="image/*" capture="environment"
-            style="display:none" onchange="UI.handleScanImage(this)">
-
-          <!-- Description / context input -->
-          <div style="margin-top:12px">
-            <label class="form-label">Add context (optional)</label>
-            <div class="context-input-wrap">
-              <span class="material-symbols-rounded icon-sm">edit_note</span>
-              <textarea class="context-textarea" id="scan-context" rows="2"
-                placeholder="e.g. 'homemade dal with 2 chapatis', 'large plate', '200g portion'…"></textarea>
-            </div>
-          </div>
-
-          <button class="btn-primary btn-full" id="scan-btn" style="display:none;margin-top:4px" onclick="UI.performScan()">
-            <span class="material-symbols-rounded icon-sm">search</span> Analyse with AI
+        <div class="scan-tabs" id="scan-tabs">
+          <button class="scan-tab active" data-tab="image" onclick="UI.switchScanTab('image')">
+            <span class="material-symbols-rounded icon-sm">photo_camera</span> Image
+          </button>
+          <button class="scan-tab" data-tab="text" onclick="UI.switchScanTab('text')">
+            <span class="material-symbols-rounded icon-sm">text_fields</span> Describe
+          </button>
+          <button class="scan-tab" data-tab="manual" onclick="UI.switchScanTab('manual')">
+            <span class="material-symbols-rounded icon-sm">edit</span> Manual
           </button>
         </div>
 
-        <!-- Scan Result -->
-        <div id="scan-result-area"></div>
-
-        <!-- Manual entry card -->
-        <div class="card" id="manual-card">
-          <h3 class="card-title">
-            <span class="material-symbols-rounded icon-sm">edit</span> Manual Entry
-          </h3>
-          <div id="manual-form">${this.manualFormHTML()}</div>
+        <!-- IMAGE TAB -->
+        <div id="tab-image" class="scan-tab-panel">
+          <div class="card">
+            <div class="drop-zone" id="drop-zone" onclick="document.getElementById('food-img-input').click()">
+              <div class="drop-content" id="drop-content">
+                <div class="drop-icon-wrap">
+                  <span class="material-symbols-rounded icon-lg">upload_file</span>
+                </div>
+                <p>Tap to upload or take a photo</p>
+                <small>Drag &amp; drop · or Ctrl+V / Cmd+V to paste</small>
+              </div>
+            </div>
+            <input type="file" id="food-img-input" accept="image/*" capture="environment"
+              style="display:none" onchange="UI.handleScanImage(this)">
+            <div style="margin-top:12px">
+              <label class="form-label">Context (optional)</label>
+              <div class="context-input-wrap">
+                <span class="material-symbols-rounded icon-sm">edit_note</span>
+                <textarea class="context-textarea" id="scan-context" rows="2"
+                  placeholder="e.g. 'large bowl', 'homemade', '2 pieces'…"></textarea>
+              </div>
+            </div>
+            <button class="btn-primary btn-full" id="scan-btn" style="display:none;margin-top:8px" onclick="UI.performImageScan()">
+              <span class="material-symbols-rounded icon-sm">search</span> Analyse with AI
+            </button>
+          </div>
         </div>
 
+        <!-- TEXT TAB -->
+        <div id="tab-text" class="scan-tab-panel" style="display:none">
+          <div class="card">
+            <p class="card-subtitle">Type what you ate and AI will estimate the nutrition. Great for Indian meals!</p>
+            <div class="text-scan-examples">
+              <span class="text-scan-chip" onclick="UI.setTextExample(this)">2 rotis + dal</span>
+              <span class="text-scan-chip" onclick="UI.setTextExample(this)">1 cup rice + rajma</span>
+              <span class="text-scan-chip" onclick="UI.setTextExample(this)">poha with peanuts</span>
+              <span class="text-scan-chip" onclick="UI.setTextExample(this)">3 idli + sambar</span>
+              <span class="text-scan-chip" onclick="UI.setTextExample(this)">curd rice bowl</span>
+              <span class="text-scan-chip" onclick="UI.setTextExample(this)">banana milkshake</span>
+            </div>
+            <div class="form-group" style="margin-top:4px">
+              <label class="form-label">Describe your meal</label>
+              <div class="context-input-wrap" style="align-items:flex-start">
+                <span class="material-symbols-rounded icon-sm" style="margin-top:3px">restaurant_menu</span>
+                <textarea class="context-textarea" id="text-scan-input" rows="4"
+                  placeholder="e.g. 2 rotis, 1 bowl curd, aloo sabzi with a bit of ghee"
+                  style="min-height:90px"></textarea>
+              </div>
+            </div>
+            <button class="btn-primary btn-full" id="text-scan-btn" onclick="UI.performTextScan()">
+              <span class="material-symbols-rounded icon-sm">auto_awesome</span> Get Nutrition Estimate
+            </button>
+          </div>
+        </div>
+
+        <!-- MANUAL TAB -->
+        <div id="tab-manual" class="scan-tab-panel" style="display:none">
+          <div class="card" id="manual-card">
+            <div id="manual-form">${this.manualFormHTML()}</div>
+          </div>
+        </div>
+
+        <div id="scan-result-area"></div>
         <div style="height:4rem"></div>
       </div>`;
 
     this._setupDropZone();
+    this._setupPaste();
+  },
+
+  switchScanTab(tab) {
+    document.querySelectorAll('.scan-tab').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
+    ['image','text','manual'].forEach(t => {
+      const el = document.getElementById('tab-' + t);
+      if (el) el.style.display = t === tab ? 'block' : 'none';
+    });
+    const area = document.getElementById('scan-result-area');
+    if (area) area.innerHTML = '';
+  },
+
+  setTextExample(el) {
+    const input = document.getElementById('text-scan-input');
+    if (input) { input.value = el.textContent.trim(); input.focus(); }
   },
 
   _scanFile: null,
+  _pasteHandler: null,
 
   _setupDropZone() {
     const dz = document.getElementById('drop-zone');
@@ -294,49 +341,83 @@ const UI = {
     dz.addEventListener('drop', e => {
       e.preventDefault(); dz.classList.remove('dragover');
       const file = e.dataTransfer.files[0];
-      if (file?.type.startsWith('image/')) UI.handleScanImage({ files: e.dataTransfer.files });
+      if (file && file.type.startsWith('image/')) UI._loadImageFile(file);
     });
   },
 
-  handleScanImage(input) {
-    const file = input.files?.[0];
-    if (!file) return;
+  _setupPaste() {
+    if (this._pasteHandler) document.removeEventListener('paste', this._pasteHandler);
+    this._pasteHandler = (e) => {
+      const items = e.clipboardData && e.clipboardData.items;
+      if (!items) return;
+      for (let i = 0; i < items.length; i++) {
+        if (items[i].type.startsWith('image/')) {
+          const file = items[i].getAsFile();
+          if (file) {
+            UI.switchScanTab('image');
+            UI._loadImageFile(file);
+            e.preventDefault();
+            UI.showToast('Image pasted!', 'success', 2000);
+            break;
+          }
+        }
+      }
+    };
+    document.addEventListener('paste', this._pasteHandler);
+  },
+
+  _loadImageFile(file) {
     this._scanFile = file;
     const reader = new FileReader();
-    reader.onload = e => {
+    reader.onload = (ev) => {
       const dc = document.getElementById('drop-content');
-      if (dc) dc.innerHTML = `
-        <img src="${e.target.result}" style="max-height:180px;max-width:100%;border-radius:12px;object-fit:contain" alt="Preview">
-        <p class="body-sm text-muted" style="margin-top:6px">Image ready to analyse</p>`;
+      if (dc) dc.innerHTML =
+        '<img src="' + ev.target.result + '" style="max-height:200px;max-width:100%;border-radius:12px;object-fit:contain" alt="Preview">' +
+        '<p class="body-sm text-muted" style="margin-top:6px"><span class="material-symbols-rounded icon-sm" style="vertical-align:middle">check_circle</span> Image ready</p>';
       const btn = document.getElementById('scan-btn');
       if (btn) btn.style.display = 'flex';
     };
     reader.readAsDataURL(file);
   },
 
-  async performScan() {
+  handleScanImage(input) {
+    const file = input.files && input.files[0];
+    if (file) this._loadImageFile(file);
+  },
+
+  async performImageScan() {
     if (!this._scanFile) return;
     const btn = document.getElementById('scan-btn');
-    if (btn) { btn.disabled = true; btn.innerHTML = `<span class="material-symbols-rounded icon-sm">hourglass_top</span> Analysing…`; }
-
-    const context = document.getElementById('scan-context')?.value?.trim() || '';
-
+    if (btn) { btn.disabled = true; btn.innerHTML = '<span class="material-symbols-rounded icon-sm">hourglass_top</span> Analysing\u2026'; }
+    const context = (document.getElementById('scan-context') || {}).value || '';
     try {
-      const result = await FoodAPI.scanFood(this._scanFile, context);
+      const result = await FoodAPI.scanFood(this._scanFile, context.trim());
       App.scanResult = result;
-
       const reader = new FileReader();
-      reader.onload = e => {
-        App.scanResult.image = e.target.result;
-        this.showScanResult(result);
-      };
+      reader.onload = (ev) => { App.scanResult.image = ev.target.result; UI.showScanResult(result); };
       reader.readAsDataURL(this._scanFile);
     } catch(err) {
       this.showToast(err.message || 'Scan failed. Check your API key.', 'error', 5000);
-      if (btn) { btn.disabled = false; btn.innerHTML = `<span class="material-symbols-rounded icon-sm">search</span> Analyse with AI`; }
+      if (btn) { btn.disabled = false; btn.innerHTML = '<span class="material-symbols-rounded icon-sm">search</span> Analyse with AI'; }
     }
   },
 
+  async performTextScan() {
+    const input = document.getElementById('text-scan-input');
+    const desc  = input ? input.value.trim() : '';
+    if (!desc) return this.showToast('Please describe your meal first', 'warning');
+    const btn = document.getElementById('text-scan-btn');
+    if (btn) { btn.disabled = true; btn.innerHTML = '<span class="material-symbols-rounded icon-sm">hourglass_top</span> Estimating\u2026'; }
+    try {
+      const result = await FoodAPI.scanText(desc);
+      App.scanResult = result;
+      this.showScanResult(result);
+    } catch(err) {
+      this.showToast(err.message || 'Failed. Check your API key.', 'error', 5000);
+    } finally {
+      if (btn) { btn.disabled = false; btn.innerHTML = '<span class="material-symbols-rounded icon-sm">auto_awesome</span> Get Nutrition Estimate'; }
+    }
+  },
   showScanResult(result) {
     const area = document.getElementById('scan-result-area');
     if (!area) return;
