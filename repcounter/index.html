@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RepCounter</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #f4f6f9;
+    --surface: #ffffff;
+    --surface-hover: #f0f2f5;
+    --text: #1a1a2e;
+    --text-secondary: #6b7280;
+    --border: #e0e4ea;
+    --shadow: 0 2px 12px rgba(0,0,0,0.06);
+    --shadow-hover: 0 6px 24px rgba(0,0,0,0.10);
+    --accent: #4f6ef7;
+    --accent-hover: #3b57d9;
+    --danger: #ef4444;
+    --danger-hover: #dc2626;
+    --radius: 14px;
+    --radius-sm: 10px;
+    --transition: 0.2s ease;
+    --input-bg: #f9fafb;
+    --card-border: #eef0f4;
+  }
+  .dark {
+    --bg: #0f1117;
+    --surface: #1a1d28;
+    --surface-hover: #242736;
+    --text: #e8ecf4;
+    --text-secondary: #9ca3af;
+    --border: #2d3140;
+    --shadow: 0 2px 12px rgba(0,0,0,0.25);
+    --shadow-hover: 0 6px 24px rgba(0,0,0,0.35);
+    --accent: #6b83ff;
+    --accent-hover: #859aff;
+    --danger: #f87171;
+    --danger-hover: #ef4444;
+    --input-bg: #242736;
+    --card-border: #2d3140;
+  }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    transition: background var(--transition), color var(--transition);
+  }
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 24px 20px 80px;
+  }
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 28px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid var(--border);
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .logo h1 {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+  }
+  .logo span {
+    font-size: 22px;
+  }
+  .header-actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    border: none;
+    border-radius: var(--radius-sm);
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition);
+    background: var(--surface);
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+  .btn:hover { background: var(--surface-hover); }
+  .btn-icon {
+    width: 38px; height: 38px;
+    padding: 0;
+    font-size: 18px;
+    border-radius: 50%;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+  }
+  .btn-primary:hover { background: var(--accent-hover); }
+  .btn-danger {
+    background: transparent;
+    color: var(--danger);
+    border-color: var(--danger);
+  }
+  .btn-danger:hover { background: var(--danger); color: #fff; }
+  .btn-warning {
+    background: transparent;
+    color: var(--text-secondary);
+    border-color: var(--border);
+  }
+  .btn-warning:hover { background: var(--surface-hover); color: var(--danger); border-color: var(--danger); }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+    gap: 18px;
+    margin-bottom: 24px;
+  }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    padding: 20px;
+    box-shadow: var(--shadow);
+    transition: box-shadow var(--transition), transform var(--transition), background var(--transition);
+    position: relative;
+    animation: cardIn 0.3s ease;
+  }
+  @keyframes cardIn {
+    from { opacity: 0; transform: translateY(12px) scale(0.97); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  .card:hover { box-shadow: var(--shadow-hover); }
+  .card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 18px;
+  }
+  .card-title {
+    font-size: 17px;
+    font-weight: 700;
+    flex: 1;
+    min-width: 0;
+    padding: 4px 8px;
+    border-radius: 6px;
+    border: 1px solid transparent;
+    cursor: text;
+    transition: background var(--transition), border-color var(--transition);
+    outline: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .card-title:hover { background: var(--input-bg); }
+  .card-title:focus {
+    background: var(--input-bg);
+    border-color: var(--accent);
+  }
+  .card-actions {
+    display: flex;
+    gap: 4px;
+    flex-shrink: 0;
+  }
+  .btn-del {
+    width: 30px; height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 16px;
+    transition: all var(--transition);
+  }
+  .btn-del:hover { background: rgba(239,68,68,0.12); color: var(--danger); }
+
+  .sets {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .set-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 10px;
+    border-radius: var(--radius-sm);
+    background: var(--input-bg);
+    transition: background var(--transition);
+  }
+  .set-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    min-width: 46px;
+    user-select: none;
+  }
+  .set-input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 4px 8px;
+    border-radius: 6px;
+    outline: none;
+    border: 1px solid transparent;
+    transition: all var(--transition);
+    color: var(--text);
+    min-width: 0;
+  }
+  .set-input::placeholder { color: var(--text-secondary); opacity: 0.5; }
+  .set-input:focus { border-color: var(--accent); background: var(--surface); }
+  .set-input[type="number"] { -moz-appearance: textfield; }
+  .set-input::-webkit-outer-spin-button,
+  .set-input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+  .rep-label {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    user-select: none;
+  }
+
+  .add-area {
+    display: flex;
+    justify-content: center;
+  }
+  .btn-add {
+    padding: 14px 32px;
+    font-size: 15px;
+    border-radius: var(--radius);
+    background: var(--surface);
+    border: 2px dashed var(--border);
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all var(--transition);
+    width: 100%;
+    max-width: 400px;
+    font-weight: 600;
+  }
+  .btn-add:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--input-bg);
+  }
+
+  .empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--text-secondary);
+  }
+  .empty-state p { font-size: 15px; margin-bottom: 8px; }
+  .empty-state .big-icon { font-size: 48px; margin-bottom: 16px; }
+
+  @media (max-width: 600px) {
+    .container { padding: 16px 12px 80px; }
+    .grid { grid-template-columns: 1fr; gap: 14px; }
+    .card { padding: 16px; }
+    .logo h1 { font-size: 20px; }
+    .btn-add { max-width: 100%; }
+    header { flex-direction: column; align-items: stretch; }
+    .header-actions { justify-content: flex-end; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <div class="logo">
+      <span>💪</span>
+      <h1>RepCounter</h1>
+    </div>
+    <div class="header-actions">
+      <button class="btn btn-icon" id="themeToggle" title="Toggle theme">🌙</button>
+      <button class="btn btn-warning" id="clearAll" title="Clear all data">🗑 Clear</button>
+    </div>
+  </header>
+
+  <div class="grid" id="exerciseGrid"></div>
+
+  <div class="add-area">
+    <button class="btn-add" id="addExercise">+ Add Exercise</button>
+  </div>
+</div>
+
+<script>
+  const STORAGE_KEY = 'workoutTrackerData';
+
+  let data = [];
+
+  const grid = document.getElementById('exerciseGrid');
+  const addBtn = document.getElementById('addExercise');
+  const themeToggle = document.getElementById('themeToggle');
+  const clearBtn = document.getElementById('clearAll');
+
+  function load() {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) {
+      try { data = JSON.parse(saved); } catch {}
+    }
+    if (!data || data.length === 0) {
+      data = [{ name: 'Exercise 1', sets: ['', '', ''] }];
+    }
+    render();
+  }
+
+  function save() {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  }
+
+  function render() {
+    if (data.length === 0) {
+      grid.innerHTML = `<div class="empty-state"><div class="big-icon">🏋️</div><p>No exercises yet.</p><p>Tap "Add Exercise" to get started.</p></div>`;
+      return;
+    }
+    grid.innerHTML = data.map((ex, i) => `
+      <div class="card" data-index="${i}">
+        <div class="card-header">
+          <div class="card-title" contenteditable="true" data-index="${i}" spellcheck="false">${esc(ex.name)}</div>
+          <div class="card-actions">
+            <button class="btn-del" data-index="${i}" title="Delete exercise">✕</button>
+          </div>
+        </div>
+        <div class="sets">
+          ${[1,2,3].map(s => `
+            <div class="set-row">
+              <span class="set-label">Set ${s}</span>
+              <input class="set-input" type="number" min="0" inputmode="numeric" placeholder="0" value="${esc(ex.sets[s-1] ?? '')}" data-ex="${i}" data-set="${s-1}">
+              <span class="rep-label">reps</span>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    `).join('');
+
+    document.querySelectorAll('.card-title').forEach(el => {
+      el.addEventListener('blur', onRename);
+      el.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); el.blur(); } });
+    });
+
+    document.querySelectorAll('.set-input').forEach(el => {
+      el.addEventListener('input', onRepChange);
+    });
+
+    document.querySelectorAll('.btn-del').forEach(el => {
+      el.addEventListener('click', onDelete);
+    });
+  }
+
+  function esc(s) {
+    const d = document.createElement('div');
+    d.textContent = s;
+    return d.innerHTML;
+  }
+
+  function onRename(e) {
+    const i = parseInt(e.target.dataset.index);
+    const val = e.target.textContent.trim() || 'Untitled';
+    data[i].name = val;
+    e.target.textContent = val;
+    save();
+  }
+
+  function onRepChange(e) {
+    const i = parseInt(e.target.dataset.ex);
+    const s = parseInt(e.target.dataset.set);
+    data[i].sets[s] = e.target.value;
+    save();
+  }
+
+  function onDelete(e) {
+    const i = parseInt(e.target.dataset.index);
+    data.splice(i, 1);
+    save();
+    render();
+  }
+
+  addBtn.addEventListener('click', () => {
+    data.push({ name: `Exercise ${data.length + 1}`, sets: ['', '', ''] });
+    save();
+    render();
+    const cards = document.querySelectorAll('.card');
+    if (cards.length) cards[cards.length - 1].scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+
+  clearBtn.addEventListener('click', () => {
+    if (data.length === 0) return;
+    if (confirm('Delete all exercises?')) {
+      data = [];
+      save();
+      render();
+    }
+  });
+
+  themeToggle.addEventListener('click', () => {
+    document.documentElement.classList.toggle('dark');
+    const isDark = document.documentElement.classList.contains('dark');
+    themeToggle.textContent = isDark ? '☀️' : '🌙';
+    localStorage.setItem('workoutTheme', isDark ? 'dark' : 'light');
+  });
+
+  (function initTheme() {
+    const saved = localStorage.getItem('workoutTheme');
+    if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+      themeToggle.textContent = '☀️';
+    }
+  })();
+
+  load();
+</script>
+</body>
+</html>
